@@ -3,21 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package controller;
 
+import dao.AkunDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Akun;
 
 /**
  *
  * @author moh.afifun
  */
-@WebServlet(urlPatterns = {"/Index"})
-public class Index extends HttpServlet {
+public class Register extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +39,10 @@ public class Index extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Index</title>");            
+            out.println("<title>Servlet Register</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Index at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Register at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -71,7 +74,30 @@ public class Index extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
+        String nama = request.getParameter("nama");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        
+        Akun acc = new Akun();
+        acc.setNama(nama);
+        acc.setEmail(email);
+        acc.setPassword(password);
+        
+        AkunDAO dao = new AkunDAO();
+        try {
+            if(dao.create(acc)){
+                request.getRequestDispatcher("success.jsp").forward(request, response);
+            }
+            else {
+                request.setAttribute("notifikasi", "email sudah digunakan!");
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 
     /**
