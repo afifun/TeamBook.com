@@ -6,8 +6,10 @@
 package controller;
 
 import dao.AkunDAO;
+import dao.KeranjangDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -16,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Akun;
+import model.BukuKeranjang;
+import model.Keranjang;
 
 /**
  *
@@ -87,12 +91,19 @@ public class Login extends HttpServlet {
         acc.setPassword(password);
         
         AkunDAO dao = new AkunDAO();
+        KeranjangDAO daoK = new KeranjangDAO();
         
         try {
             acc = dao.login(acc);
             if(acc.isValid()){
+                
+                System.out.println("id akun :" + acc.getId());
+                Keranjang kr = daoK.getKeranjang(acc.getId());
+                List<BukuKeranjang> list = daoK.getItemKeranjang(kr.getIdKeranjang());
                 HttpSession session = request.getSession(true);
                 session.setAttribute("currentSessionUser", acc);
+                session.setAttribute("currentSessionCart", kr);  
+                session.setAttribute("item_sum", "(" + list.size() + ")");
                 response.sendRedirect("Index");
             }
             else {

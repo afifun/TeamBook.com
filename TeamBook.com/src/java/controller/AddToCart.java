@@ -1,13 +1,10 @@
-package controller;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package controller;
 
-import dao.AkunDAO;
-import dao.BukuDAO;
 import dao.KeranjangDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,19 +13,18 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Buku;
+import javax.servlet.http.HttpSession;
+import model.BukuKeranjang;
 import model.Keranjang;
 
 /**
  *
  * @author moh.afifun
  */
-@WebServlet(urlPatterns = {"/Index"})
-public class Index extends HttpServlet {
+public class AddToCart extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,10 +43,10 @@ public class Index extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Index</title>");            
+            out.println("<title>Servlet AddToCart</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Index at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddToCart at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -70,18 +66,25 @@ public class Index extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
         
-        BukuDAO dao = new BukuDAO();
+        String idB = request.getParameter("id");
+        KeranjangDAO dao = new KeranjangDAO();
+        Keranjang keranjangTmp = (Keranjang) request.getSession().getAttribute("currentSessionCart");
+        
+        
+        
         try {
-            List<Buku> list = dao.getAllListBuku();
-            request.setAttribute("buku", true);
-            request.setAttribute("listBuku", list);
-            request.getRequestDispatcher("index.jsp").forward(request,
-						response);
+           if (dao.addItem(idB, keranjangTmp.getIdKeranjang())){
+               List<BukuKeranjang> list = dao.getItemKeranjang(keranjangTmp.getIdKeranjang());
+               HttpSession session = request.getSession(true);
+               session.setAttribute("item_sum", "(" + list.size() + ")");
+                String site = "Index";
+                response.setStatus(response.SC_MOVED_TEMPORARILY);
+                response.setHeader("Location", site);
+           }
         } catch (SQLException ex) {
-            Logger.getLogger(ListBook.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddToCart.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-    
     }
 
     /**
@@ -95,10 +98,7 @@ public class Index extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-        
-        request.getRequestDispatcher("index.jsp").forward(request,
-						response);
+        processRequest(request, response);
     }
 
     /**

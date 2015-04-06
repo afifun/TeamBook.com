@@ -261,7 +261,8 @@
 											<div class="overlay-content">
 												<h2>${item.getHarga()}</h2>
 												<p>${item.getJudul()}</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                                                                
+												<a href="AddToCart?id=${item.getId()}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 											</div>
 										</div>
 								</div>

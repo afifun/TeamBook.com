@@ -154,7 +154,7 @@ public class BukuDAO {
 
         if (rowsUpdate > 0 && filecontent != null) {
             
-            File f = new File("C:/Users/moh.afifun/Documents/GitHub/TeamBook.com/TeamBook.com/web/images/" + isbn + ".jpg");
+            File f = new File("C:/Users/moh.afifun/Documents/GitHub/TeamBook.com/TeamBook.com/web/images/buku/" + isbn + ".jpg");
 
             Boolean flag = false;
             
@@ -162,7 +162,7 @@ public class BukuDAO {
                 flag = f.delete();
             }
                         
-            OutputStream outputStream = new FileOutputStream(new File("C:/Users/moh.afifun/Documents/GitHub/TeamBook.com/TeamBook.com/web/images/" + isbn + ".jpg"));
+            OutputStream outputStream = new FileOutputStream(new File("C:/Users/moh.afifun/Documents/GitHub/TeamBook.com/TeamBook.com/web/images/buku/" + isbn + ".jpg"));
 
             int read = 0;
             byte[] bytes = new byte[2048];
@@ -189,7 +189,7 @@ public class BukuDAO {
 
             }
             
-            String query2 = "update buku set gambar = '" + "images/" + isbn + ".jpg'" +  "' where id ='" + id + "'";
+            String query2 = "update buku set gambar = '" + "images/buku/" + isbn + ".jpg'" +  "' where id ='" + id + "'";
             psmt = currentCon.prepareStatement(query);
             psmt.executeUpdate();
             
@@ -243,7 +243,17 @@ public class BukuDAO {
 
         return isSucces;
     }
-
+    
+    
+    public List<Buku> getListBuku(List<Integer> id) throws IOException, SQLException {
+        
+        List<Buku> list = new ArrayList();
+        for (Integer id1 : id) {
+            list.add(getBuku(""+id1)); 
+        }
+        return list;
+    }
+    
     public Buku getBuku(String id) throws SQLException, IOException {
         boolean isSucces = false;
 

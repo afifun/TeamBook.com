@@ -32,6 +32,18 @@
         <servlet-name>EditBook</servlet-name>
         <servlet-class>controller.EditBook</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddToCart</servlet-name>
+        <servlet-class>controller.AddToCart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Cart</servlet-name>
+        <servlet-class>controller.Cart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteItemCart</servlet-name>
+        <servlet-class>controller.DeleteItemCart</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -63,6 +75,18 @@
     <servlet-mapping>
         <servlet-name>EditBook</servlet-name>
         <url-pattern>/EditBook</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToCart</servlet-name>
+        <url-pattern>/AddToCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Cart</servlet-name>
+        <url-pattern>/Cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteItemCart</servlet-name>
+        <url-pattern>/DeleteItemCart</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

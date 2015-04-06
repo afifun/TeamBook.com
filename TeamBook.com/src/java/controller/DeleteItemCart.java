@@ -1,34 +1,28 @@
-package controller;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package controller;
 
-import dao.AkunDAO;
 import dao.BukuDAO;
 import dao.KeranjangDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Buku;
-import model.Keranjang;
+import model.Akun;
 
 /**
  *
  * @author moh.afifun
  */
-@WebServlet(urlPatterns = {"/Index"})
-public class Index extends HttpServlet {
+public class DeleteItemCart extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,10 +41,10 @@ public class Index extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Index</title>");            
+            out.println("<title>Servlet DeleteCart</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Index at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DeleteCart at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -70,18 +64,25 @@ public class Index extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
         
-        BukuDAO dao = new BukuDAO();
+        Akun temp = (Akun) request.getSession().getAttribute("currentSessionUser");
+		if(temp == null){
+			String site = "Login" ;
+			response.setStatus(response.SC_MOVED_TEMPORARILY);
+			response.setHeader("Location", site);
+		}
+        String id = request.getParameter("id");
+        KeranjangDAO dao = new KeranjangDAO();
         try {
-            List<Buku> list = dao.getAllListBuku();
-            request.setAttribute("buku", true);
-            request.setAttribute("listBuku", list);
-            request.getRequestDispatcher("index.jsp").forward(request,
-						response);
+           if(dao.delete(id)){ 
+               request.setAttribute("notifikasi", "Sukses! Buku dengan " + id + " berhasil dihapus.");
+            }
+            else {
+                request.setAttribute("notifikasi", "Gagal! Buku gagal dihapus.");
+            }
+            request.getRequestDispatcher("Cart").forward(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(ListBook.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Delete.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-    
     }
 
     /**
@@ -95,10 +96,7 @@ public class Index extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-        
-        request.getRequestDispatcher("index.jsp").forward(request,
-						response);
+        processRequest(request, response);
     }
 
     /**

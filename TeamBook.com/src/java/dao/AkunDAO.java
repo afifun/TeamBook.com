@@ -130,8 +130,7 @@ public class AkunDAO {
                     else {
                        psmt.setString(5, "0");
                     }
-
-
+                    
                     int rowsUpdate = psmt.executeUpdate();
 
                     if (rowsUpdate > 0) {
