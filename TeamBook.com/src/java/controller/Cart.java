@@ -71,13 +71,14 @@ public class Cart extends HttpServlet {
         
         Akun temp = (Akun) request.getSession().getAttribute("currentSessionUser");
         Keranjang keranjangTmp = (Keranjang) request.getSession().getAttribute("currentSessionCart");
-        
-	if(keranjangTmp == null){
+        System.out.println("sdsfsdfs " + keranjangTmp);
+	if(temp == null || keranjangTmp == null){
             System.out.println("sdsfsdfs " + keranjangTmp);
 		String site = "Login" ;
 		response.setStatus(response.SC_MOVED_TEMPORARILY);
 		response.setHeader("Location", site);
 	}
+        else {
                 
         BukuDAO dao = new BukuDAO();
         KeranjangDAO daoK = new KeranjangDAO();
@@ -95,7 +96,7 @@ public class Cart extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(ListBook.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        }
     }
 
     /**
