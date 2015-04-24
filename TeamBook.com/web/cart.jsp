@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Cart | E-Shopper</title>
+    <title>Cart | Teambook</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">
@@ -39,7 +39,7 @@
 			<div class="breadcrumbs">
 				<ol class="breadcrumb">
 				  <li><a href="#">Home</a></li>
-				  <li class="active">Shopping Cart</li>
+				  <li class="active">Keranjang Belanja</li>
 				</ol>
 			</div>
 			<div class="table-responsive cart_info">
@@ -48,8 +48,8 @@
 						<tr class="cart_menu">
 							<td class="image">Item</td>
 							<td class="description"></td>
-							<td class="price">Price</td>
-							<td class="quantity">Quantity</td>
+							<td class="price">Harga</td>
+							<td class="quantity">Jumlah</td>
 							<td class="total">Total</td>
 							<td></td>
 						</tr>
