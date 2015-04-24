@@ -167,7 +167,7 @@
 		</div>
 	</section><!--/#do_action-->
 
-	<footer id="footer"><!--Footer-->
+	<!--<footer id="footer">
 		<div class="footer-top">
 			<div class="container">
 				<div class="row">
@@ -323,9 +323,9 @@
 			</div>
 		</div>
 		
-	</footer><!--/Footer-->
+	</footer>-->
 	
-
+        <jsp:include page="footer.jsp" flush="false" />
 
     <script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>

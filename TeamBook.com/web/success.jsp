@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Contact | E-Shopper</title>
+    <title>Contact | Teambook</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">
@@ -56,7 +56,7 @@
     	</div>	
     </div><!--/#contact-page-->
 	
-	<footer id="footer"><!--Footer-->
+	<!--<footer id="footer">
 		<div class="footer-top">
 			<div class="container">
 				<div class="row">
@@ -212,8 +212,8 @@
 			</div>
 		</div>
 		
-	</footer><!--/Footer-->
-	
+	</footer>-->
+	<jsp:include page="footer.jsp" flush="false" />
 
   
     <script src="js/jquery.js"></script>

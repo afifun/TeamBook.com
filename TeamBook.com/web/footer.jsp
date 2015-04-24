@@ -18,7 +18,7 @@
 					<div class="col-sm-2">
 						<div class="companyinfo">
 							<h2><span>TeamBook</span>Store</h2>
-                                                        <div class='copyright'>Copyright © 2015</div>
+                                                        <div class='copyright'>2015</div>
 							<!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p> -->
 						</div>
 					</div>
