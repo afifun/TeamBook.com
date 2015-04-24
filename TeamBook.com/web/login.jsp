@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Login | E-Shopper</title>
+    <title>Login | Teambook</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">
@@ -38,9 +38,9 @@
 			<div class="row">
 				<div class="col-sm-4 col-sm-offset-1">
 					<div class="login-form"><!--login form-->
-						<h2>Login to your account</h2>
+						<h2>Login</h2>
                                                 <form action="Login" method="post">
-							<input type="email" name="email" placeholder="Email Address" />
+							<input type="email" name="email" placeholder="Email" />
                                                         
 							<input type="password" name="password" placeholder="Password"/>
 <!--							<span>
@@ -56,13 +56,13 @@
 				</div>
 				<div class="col-sm-4">
 					<div class="signup-form"><!--sign up form-->
-						<h2>New User Signup!</h2>  
+						<h2>Register</h2>  
                                                 <p style="color: red">${notifikasi}</p>
 						<form action="Register" method="post">
-							<input type="text" name="nama" placeholder="Name"/>
-							<input type="email" name="email" placeholder="Email Address"/>
+							<input type="text" name="nama" placeholder="Nama"/>
+							<input type="email" name="email" placeholder="Email"/>
 							<input type="password" name="password" placeholder="Password"/>
-							<button type="submit" class="btn btn-default">Signup</button>
+							<button type="submit" class="btn btn-default">Register</button>
 						</form>
 					</div><!--/sign up form-->
 				</div>

@@ -17,11 +17,12 @@
 				<div class="row">
 					<div class="col-sm-2">
 						<div class="companyinfo">
-							<h2><span>Team</span>Book Store</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
+							<h2><span>TeamBook</span>Store</h2>
+                                                        <div class='copyright'>Copyright © 2015</div>
+							<!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p> -->
 						</div>
 					</div>
-					<div class="col-sm-7">
+					<!--<div class="col-sm-7">
 						<div class="col-sm-3">
 							<div class="video-gallery text-center">
 								<a href="#">
@@ -81,11 +82,11 @@
 								<h2>24 DEC 2014</h2>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<div class="col-sm-3">
 						<div class="address">
 							<img src="images/home/map.png" alt="" />
-							<p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
+							<p>Depok, Indonesia</p>
 						</div>
 					</div>
 				</div>

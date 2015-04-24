@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Contact | E-Shopper</title>
+    <title>Contact |Teambook</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">
@@ -37,19 +37,19 @@
     	<div class="bg">
 	    	<div class="row">    		
 	    		<div class="col-sm-12">    			   			
-					<h2 class="title text-center">Contact <strong>Us</strong></h2>    			    				    				
-					<div id="gmap" class="contact-map">
+					<h2 class="title text-center"><strong>Hubungi Kami</strong></h2>    			    				    				
+					<!--<div id="gmap" class="contact-map"> -->
 					</div>
 				</div>			 		
 			</div>    	
     		<div class="row">  	
 	    		<div class="col-sm-8">
 	    			<div class="contact-form">
-	    				<h2 class="title text-center">Get In Touch</h2>
+	    				<h2 class="title text-center">Kirim Pesan</h2>
 	    				<div class="status alert alert-success" style="display: none"></div>
 				    	<form id="main-contact-form" class="contact-form row" name="contact-form" method="post">
 				            <div class="form-group col-md-6">
-				                <input type="text" name="name" class="form-control" required="required" placeholder="Name">
+				                <input type="text" name="name" class="form-control" required="required" placeholder="Nama">
 				            </div>
 				            <div class="form-group col-md-6">
 				                <input type="email" name="email" class="form-control" required="required" placeholder="Email">
@@ -58,27 +58,27 @@
 				                <input type="text" name="subject" class="form-control" required="required" placeholder="Subject">
 				            </div>
 				            <div class="form-group col-md-12">
-				                <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Your Message Here"></textarea>
+				                <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Ketik pesan Anda di sini"></textarea>
 				            </div>                        
 				            <div class="form-group col-md-12">
-				                <input type="submit" name="submit" class="btn btn-primary pull-right" value="Submit">
+				                <input type="submit" name="submit" class="btn btn-primary pull-right" value="Kirim">
 				            </div>
 				        </form>
 	    			</div>
 	    		</div>
 	    		<div class="col-sm-4">
 	    			<div class="contact-info">
-	    				<h2 class="title text-center">Contact Info</h2>
+	    				<h2 class="title text-center"> Info Teambook</h2>
 	    				<address>
-	    					<p>E-Shopper Inc.</p>
-							<p>935 W. Webster Ave New Streets Chicago, IL 60614, NY</p>
-							<p>Newyork USA</p>
-							<p>Mobile: +2346 17 38 93</p>
-							<p>Fax: 1-714-252-0026</p>
-							<p>Email: info@e-shopper.com</p>
+	    					<p>Teambook</p>
+							<p>Jl. Margonda</p>
+							<p>Depok</p>
+							<p>Mobile: +6281233115617</p>
+							<p>Fax: 2-712-242-0034</p>
+							<p>Email: info@teambook.com</p>
 	    				</address>
 	    				<div class="social-networks">
-	    					<h2 class="title text-center">Social Networking</h2>
+	    					<h2 class="title text-center">Media Sosial</h2>
 							<ul>
 								<li>
 									<a href="#"><i class="fa fa-facebook"></i></a>
