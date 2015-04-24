@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Home | E-Shopper</title>
+    <title>Home | Teambook</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">
@@ -48,39 +48,39 @@
 						<div class="carousel-inner">
 							<div class="item active">
 								<div class="col-sm-6">
-									<h1><span>E</span>-SHOPPER</h1>
+									<h1><span>T</span>EAMBOOK</h1>
 									<h2>Free E-Commerce Template</h2>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 									<button type="button" class="btn btn-default get">Get it now</button>
 								</div>
 								<div class="col-sm-6">
-									<img src="images/home/girl1.jpg" class="girl img-responsive" alt="" />
-									<img src="images/home/pricing.png"  class="pricing" alt="" />
+									<img src="images/home/baca1.jpg" class="girl img-responsive" alt="" />
+									<!--<img src="images/home/pricing.png"  class="pricing" alt="" />-->
 								</div>
 							</div>
 							<div class="item">
 								<div class="col-sm-6">
-									<h1><span>E</span>-SHOPPER</h1>
+									<h1><span>T</span>EAMBOOK</h1>
 									<h2>100% Responsive Design</h2>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 									<button type="button" class="btn btn-default get">Get it now</button>
 								</div>
 								<div class="col-sm-6">
-									<img src="images/home/girl2.jpg" class="girl img-responsive" alt="" />
-									<img src="images/home/pricing.png"  class="pricing" alt="" />
+									<img src="images/home/baca2.jpg" class="girl img-responsive" alt="" />
+									<!--<img src="images/home/pricing.png"  class="pricing" alt="" />-->
 								</div>
 							</div>
 							
 							<div class="item">
 								<div class="col-sm-6">
-									<h1><span>E</span>-SHOPPER</h1>
+									<h1><span>T</span>EAMBOOK</h1>
 									<h2>Free Ecommerce Template</h2>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 									<button type="button" class="btn btn-default get">Get it now</button>
 								</div>
 								<div class="col-sm-6">
-									<img src="images/home/girl3.jpg" class="girl img-responsive" alt="" />
-									<img src="images/home/pricing.png" class="pricing" alt="" />
+									<img src="images/home/buku1.jpg" class="girl img-responsive" alt="" />
+									<!--<img src="images/home/pricing.png" class="pricing" alt="" />-->
 								</div>
 							</div>
 							
