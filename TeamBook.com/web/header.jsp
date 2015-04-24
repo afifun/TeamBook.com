@@ -32,7 +32,7 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="logo pull-left">
-                        <a href="index.jsp"><img src="images/home/logobaru.jpg" alt="" /> 
+                        <a href="index.jsp"><img src="images/home/logobener.jpg" alt="" /> 
                             <c:if test="${currentSessionUser.isIsAdmin()}">
 						Admin
 					</c:if>
