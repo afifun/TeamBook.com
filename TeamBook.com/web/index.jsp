@@ -48,10 +48,13 @@
 						<div class="carousel-inner">
 							<div class="item active">
 								<div class="col-sm-6">
-
+<<<<<<< HEAD
+									<h1><span>T</span>EAMBOOK</h1>
+									<h2>Free E-Commerce Template</h2>
+=======
 									<h1><span>Teambook</span>Store</h1>
 									<h2>Promo bulan April</h2>
-
+>>>>>>> origin/master
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 									<button type="button" class="btn btn-default get">Dapatkan Promo</button>
 								</div>
@@ -62,10 +65,13 @@
 							</div>
 							<div class="item">
 								<div class="col-sm-6">
-
+<<<<<<< HEAD
+									<h1><span>T</span>EAMBOOK</h1>
+									<h2>100% Responsive Design</h2>
+=======
 									<h1><span>Teambook</span>Store</h1>
 									<h2>Buku Fiksi Terlaris</h2>
-
+>>>>>>> origin/master
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 									<button type="button" class="btn btn-default get">Beli Buku</button>
 								</div>
@@ -77,9 +83,13 @@
 							
 							<div class="item">
 								<div class="col-sm-6">
+<<<<<<< HEAD
+									<h1><span>T</span>EAMBOOK</h1>
+									<h2>Free Ecommerce Template</h2>
+=======
 									<h1><span>Teambook</span>Store</h1>
 									<h2>Buku Non Fiksi Terlaris</h2>
-
+>>>>>>> origin/master
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 									<button type="button" class="btn btn-default get">Beli Buku</button>
 								</div>
