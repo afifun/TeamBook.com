@@ -32,8 +32,13 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="logo pull-left">
+<<<<<<< HEAD
                         <a href="index.jsp"><img src="images/home/logobener.jpg" alt="" /> 
                             <c:if test="${currentSessionUser.getIsAdmin()}">
+=======
+                        <a href="index.jsp"><img src="images/home/logobaru2.png" alt="" /> 
+                            <c:if test="${currentSessionUser.isIsAdmin()}">
+>>>>>>> origin/master
 						Admin
 					</c:if>
                             </a>
