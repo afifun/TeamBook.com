@@ -6,6 +6,7 @@
 package controller;
 
 import dao.AkunDAO;
+import dao.KeranjangDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Akun;
+import model.Keranjang;
 
 /**
  *
@@ -60,7 +62,9 @@ public class Register extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
+        
+        request.getRequestDispatcher("register.jsp").forward(request, response);
     }
 
     /**
@@ -75,29 +79,47 @@ public class Register extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
+        
         String nama = request.getParameter("nama");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String phone = request.getParameter("phone");
+        String provinsi = request.getParameter("provinsi");
+        String kota = request.getParameter("kota");
+        String kodePos = request.getParameter("kode_pos");
+        String alamat_default = request.getParameter("alamat_default");
+        String alamat_shipping = request.getParameter("alamat_shipping");
+        
         
         Akun acc = new Akun();
         acc.setNama(nama);
         acc.setEmail(email);
         acc.setPassword(password);
+        acc.setPhone(phone);
+        acc.setProvinsi(provinsi);
+        acc.setKota(kota);
+        acc.setKodePos(kodePos);
+        acc.setAlamatDefault(alamat_default);
+        acc.setAlamatShipping(alamat_shipping);
         
         AkunDAO dao = new AkunDAO();
+        KeranjangDAO daoK = new KeranjangDAO();
+        
         try {
-            if(dao.create(acc)){
+            if(dao.add(acc)){
+                Keranjang newKr = new Keranjang();
+                newKr.setIdAkun(dao.getAkunByEmail(acc.getEmail()).getId());
+                daoK.add(newKr);
                 request.getRequestDispatcher("success.jsp").forward(request, response);
             }
             else {
                 request.setAttribute("notifikasi", "email sudah digunakan!");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+                request.getRequestDispatcher("register.jsp").forward(request, response);
             }
         } catch (Exception ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 
     /**

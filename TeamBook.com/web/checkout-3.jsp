@@ -1,10 +1,9 @@
 <%-- 
-    Document   : cart
-    Created on : Mar 11, 2015, 5:08:17 PM
+    Document   : checkout
+    Created on : Mar 11, 2015, 5:08:53 PM
     Author     : moh.afifun
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Cart | Teambook</title>
+    <title>Checkout | Teambook</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">
@@ -39,59 +38,93 @@
 			<div class="breadcrumbs">
 				<ol class="breadcrumb">
 				  <li><a href="#">Home</a></li>
-				  <li class="active">Keranjang Belanja</li>
-                                  
+				  <li class="active">Check out</li>
 				</ol>
+			</div><!--/breadcrums-->
+                        
+				<div class="row">
+                        <div class="col-lg-6">
+                            
+			<div class="step-one">
+				<h2 class="heading">Step 3 : Informasi Pembayaran</h2>
 			</div>
-			<div class="table-responsive cart_info">
+
+
+			<div class="shopper-informations">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="shopper-info">
+                                                    
+                                                    <label><input disabled type="checkbox" checked> Transfer Bank</label>
+                                                    <p>Pilih Bank :</p>
+							<form>
+                                                            <label><input name="bank" type="radio"> BNI</label><br>
+                                                                <label><input name="bank" type="radio"> Mandiri</label><br>
+                                                                <label><input name="bank" type="radio"> BCA</label><br>
+                                                                <label><input name="bank" type="radio"> BRI</label><br>
+                                                                <label><input name="bank" type="radio"> Danamon</label><br>
+							</form>
+                                                    <a class="btn btn-primary" href="checkout-4.jsp">Continue</a>
+						</div>
+					</div>				
+				</div>
+			</div>
+                            
+                            
+                        </div>
+                                    <div class="col-lg-3"></div>
+                        <div class="col-lg-3">
+                            
+                            <div class="table-responsive cart_info">
 				<table class="table table-condensed">
 					<thead>
 						<tr class="cart_menu">
-							<td class="image">Item</td>
-							<td class="description"></td>
-							<td class="price">Harga</td>
-							<td class="quantity">Jumlah</td>
-							<td class="total">Total</td>
-							<td></td>
-						</tr>
-					</thead>
-					<tbody>
-                                            
-                                            <c:forEach var="item" items="${list}">
-                                                <tr>
-							<td class="cart_product">
-								<a href=""><img style="height:50px;width: 50px;" src="${item.getBuku().getGambar()}" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">${item.getBuku().getJudul()}</a></h4>
-								<p>${item.getBuku().getId()}</p>
-							</td>
-							<td class="cart_price">
-								<p>${item.getBuku().getHarga()}</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="${item.getKuantitas()}" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">${item.getKuantitas()*item.getBuku().getHarga()}</p>
-							</td>
-							<td class="cart_delete">
-                                                            <a href="DeleteItemCart?id=${item.getId()}" class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
+							<td class="image">Checkout Progress</td>
 						</tr>
                                                 
-                                            </c:forEach>
+					</thead>
+					<tbody>
+                                            <tr >
+                                                    <td class="cart_product">
+                                                        <strong>1. Informasi Penerima</strong>
+                                                    </td>
+                                                            
+                                                </tr>
+                                                <tr>
+                                                    <td class="cart_product">
+                                                        <strong>2. Informasi Pengiriman</strong>
+                                                    </td>
+                                                            
+                                                </tr>
+                                                <tr>
+                                                    <td class="cart_product">
+                                                        <strong>3. Informasi Pembayaran</strong>
+                                                    </td>
+                                                            
+                                                </tr>
+                                                
 					</tbody>
 				</table>
-                           
 			</div>
-                     <a class="btn btn-primary check_out pull-right" href="checkout-1.jsp">Continue to Checkout</a>
+                        </div>
+                                </div>
+                        
+			
+
+			<div class="payment-options">
+					<span>
+					</span>
+					<span>
+						<label><input type="checkbox"> Check Payment</label>
+					</span>
+					<span>
+						<label><input type="checkbox"> Paypal</label>
+					</span>
+				</div>
 		</div>
 	</section> <!--/#cart_items-->
+
+	
 
 	<!--<footer id="footer">
 		<div class="footer-top">
@@ -255,7 +288,7 @@
 
     <script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.scrollUp.min.js"></script>
+    <script src="js/jquery.scrollUp.min.js"></script>
     <script src="js/jquery.prettyPhoto.js"></script>
     <script src="js/main.js"></script>
 </body>

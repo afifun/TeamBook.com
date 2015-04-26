@@ -68,20 +68,16 @@ public class ListBook extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
         Akun temp = (Akun) request.getSession().getAttribute("currentSessionUser");
-		if(temp == null || !temp.isIsAdmin()){
+		if(temp == null || !temp.getIsAdmin()){
 			String site = "Login" ;
 			response.setStatus(response.SC_MOVED_TEMPORARILY);
 			response.setHeader("Location", site);
 		}
         BukuDAO dao = new BukuDAO();
         
-        try {
-            List<Buku> list = dao.getAllListBuku();
-            request.setAttribute("buku", true);
-            request.setAttribute("listBuku", list);
-        } catch (SQLException ex) {
-            Logger.getLogger(ListBook.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        List<Buku> list = dao.getListBuku();
+        request.setAttribute("buku", true);
+        request.setAttribute("listBuku", list);
         request.getRequestDispatcher("listBook.jsp").forward(request,
 						response);
     }

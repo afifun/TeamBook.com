@@ -10,6 +10,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -71,7 +72,7 @@ public class AddBook extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
         Akun temp = (Akun) request.getSession().getAttribute("currentSessionUser");
-		if(temp == null || !temp.isIsAdmin()){
+		if(temp == null || !temp.getIsAdmin()){
 			String site = "Login" ;
 			response.setStatus(response.SC_MOVED_TEMPORARILY);
 			response.setHeader("Location", site);
@@ -94,7 +95,7 @@ public class AddBook extends HttpServlet {
 //        processRequest(request, response);
         
         Akun temp = (Akun) request.getSession().getAttribute("currentSessionUser");
-		if(temp == null || !temp.isIsAdmin()){
+		if(temp == null || !temp.getIsAdmin()){
 			String site = "Login" ;
 			response.setStatus(response.SC_MOVED_TEMPORARILY);
 			response.setHeader("Location", site);
@@ -102,10 +103,14 @@ public class AddBook extends HttpServlet {
                 
         BukuDAO dao = new BukuDAO();
         String judul = request.getParameter("judul");
+        Date tanggal_terbit  = Date.valueOf(request.getParameter("tanggal_terbit"));
         String kategori = request.getParameter("kategori");
         String isbn = request.getParameter("isbn");
         String deskripsi = request.getParameter("deskripsi");
         String harga = request.getParameter("harga");
+        String pengarang = request.getParameter("pengarang");
+        String penerbit = request.getParameter("penerbit");
+        
         InputStream filecontent = null;
         
         System.out.println(judul);
@@ -121,25 +126,24 @@ public class AddBook extends HttpServlet {
         
         Buku bk = new Buku();
         bk.setJudul(judul);
+        bk.setPublishDate(tanggal_terbit);
         bk.setDeskripsi(deskripsi);
-        bk.setHarga(harga);
+        bk.setHarga(Double.parseDouble(harga));
         bk.setKategori(kategori);
         bk.setIsbn(isbn);
-        bk.setGambar(filecontent);
+        bk.setPenerbit(penerbit);
+        bk.setAuthor(pengarang);
+        bk.setGambar("images/buku/" + isbn + ".jpg");
         
-        try {
-            if(dao.create(bk)){
-                request.setAttribute("buku", true);
-                request.setAttribute("notifikasi", "Sukses! Buku berhasil ditambahkan");
-            }
-            else {
-                request.setAttribute("buku", true);
-                request.setAttribute("notifikasi", "Gagal! Buku gagal ditambahkan");
-            }
-            request.getRequestDispatcher("addBook.jsp").forward(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(AddBook.class.getName()).log(Level.SEVERE, null, ex);
+        if(dao.add(bk,filecontent)){
+            request.setAttribute("buku", true);
+            request.setAttribute("notifikasi", "Sukses! Buku berhasil ditambahkan");
         }
+        else {
+            request.setAttribute("buku", true);
+            request.setAttribute("notifikasi", "Gagal! Buku gagal ditambahkan");
+        }
+        request.getRequestDispatcher("addBook.jsp").forward(request, response);
         
         
         

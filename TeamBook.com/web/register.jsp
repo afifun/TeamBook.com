@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Login | Teambook</title>
+    <title>Register | Teambook</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">
@@ -33,30 +33,32 @@
 
 <body>
 	<jsp:include page="header.jsp" flush="false" />
-	<section id="form"><!--form-->
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-4 col-sm-offset-1">
-					<div class="login-form"><!--login form-->
-						<h2>Login</h2>
-                                                <p style="color: red">${respon}</p>
-                                                <form action="Login" method="post">
-							<input type="email" name="email" placeholder="Email" />
+				<div class="col-sm-4 ">
+					<div class="signup-form"><!--sign up form-->
+						<h2>Register</h2>  
+                                                <p style="color: red">${notifikasi}</p>
+						<form action="Register" method="post">
+                                                    <input type="text" name="nama" placeholder="Nama" required/>
+							<input type="email" name="email" placeholder="Email" required/>
+							<input type="password" name="password" placeholder="Password" required/>
                                                         
-							<input type="password" name="password" placeholder="Password"/>
-<!--							<span>
-								<input type="checkbox" class="checkbox"> 
-								Keep me signed in
-							</span>-->
-							<button type="submit" class="btn btn-default">Login</button>
+                                                        <input type="text" name="phone" placeholder="No.Telepon" required/>
+							<input type="text" name="provinsi" placeholder="Provinsi" required/>
+							<input type="text" name="kota" placeholder="Kota" required/>
+                                                        
+							<input type="text" name="kode_pos" placeholder="Kode Pos" required/>
+                                                        <textarea rows="5" name="alamat_default" placeholder="Alamat Default" required></textarea>
+                                                        <p></p>
+                                                        <textarea rows="5" name="alamat_shipping" placeholder="Alamat Shipping" required></textarea>
+                                                        <p></p>
+							<button type="submit" class="btn btn-default">Register</button>
 						</form>
-                                                
-					</div><!--/login form-->
+					</div><!--/sign up form-->
 				</div>
-				
 			</div>
 		</div>
-	</section><!--/form-->
 	
 	
 	<jsp:include page="footer.jsp" flush="false" />

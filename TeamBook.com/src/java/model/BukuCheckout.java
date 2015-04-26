@@ -5,7 +5,6 @@
  */
 package model;
 
-import dao.BukuDAO;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -23,16 +22,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author moh.afifun
  */
 @Entity
-@Table(name = "buku_keranjang")
+@Table(name = "buku_order")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "BukuKeranjang.findAll", query = "SELECT b FROM BukuKeranjang b"),
-    @NamedQuery(name = "BukuKeranjang.findById", query = "SELECT b FROM BukuKeranjang b WHERE b.id = :id"),
-    @NamedQuery(name = "BukuKeranjang.findByIdBuku", query = "SELECT b FROM BukuKeranjang b WHERE b.idBuku = :idBuku"),
-    @NamedQuery(name = "BukuKeranjang.findByIdKeranjang", query = "SELECT b FROM BukuKeranjang b WHERE b.idKeranjang = :idKeranjang"),
-    @NamedQuery(name = "BukuKeranjang.findByIdKeranjangAndBuku", query = "SELECT b FROM BukuKeranjang b WHERE b.idKeranjang = :idKeranjang AND b.idBuku = :idBuku"),
-    @NamedQuery(name = "BukuKeranjang.findByKuantitas", query = "SELECT b FROM BukuKeranjang b WHERE b.kuantitas = :kuantitas")})
-public class BukuKeranjang implements Serializable {
+    @NamedQuery(name = "BukuCheckout.findAll", query = "SELECT b FROM BukuCheckout b"),
+    @NamedQuery(name = "BukuCheckout.findById", query = "SELECT b FROM BukuCheckout b WHERE b.id = :id"),
+    @NamedQuery(name = "BukuCheckout.findByIdBuku", query = "SELECT b FROM BukuCheckout b WHERE b.idBuku = :idBuku"),
+    @NamedQuery(name = "BukuCheckout.findByIdOrder", query = "SELECT b FROM BukuCheckout b WHERE b.idOrder = :idOrder")})
+public class BukuCheckout implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,24 +40,20 @@ public class BukuKeranjang implements Serializable {
     @Column(name = "id_buku")
     private int idBuku;
     @Basic(optional = false)
-    @Column(name = "id_keranjang")
-    private int idKeranjang;
-    @Basic(optional = false)
-    @Column(name = "kuantitas")
-    private int kuantitas;
+    @Column(name = "id_order")
+    private int idOrder;
 
-    public BukuKeranjang() {
+    public BukuCheckout() {
     }
 
-    public BukuKeranjang(Integer id) {
+    public BukuCheckout(Integer id) {
         this.id = id;
     }
 
-    public BukuKeranjang(Integer id, int idBuku, int idKeranjang, int kuantitas) {
+    public BukuCheckout(Integer id, int idBuku, int idOrder) {
         this.id = id;
         this.idBuku = idBuku;
-        this.idKeranjang = idKeranjang;
-        this.kuantitas = kuantitas;
+        this.idOrder = idOrder;
     }
 
     public Integer getId() {
@@ -79,20 +72,12 @@ public class BukuKeranjang implements Serializable {
         this.idBuku = idBuku;
     }
 
-    public int getIdKeranjang() {
-        return idKeranjang;
+    public int getIdOrder() {
+        return idOrder;
     }
 
-    public void setIdKeranjang(int idKeranjang) {
-        this.idKeranjang = idKeranjang;
-    }
-
-    public int getKuantitas() {
-        return kuantitas;
-    }
-
-    public void setKuantitas(int kuantitas) {
-        this.kuantitas = kuantitas;
+    public void setIdOrder(int idOrder) {
+        this.idOrder = idOrder;
     }
 
     @Override
@@ -105,24 +90,19 @@ public class BukuKeranjang implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof BukuKeranjang)) {
+        if (!(object instanceof BukuCheckout)) {
             return false;
         }
-        BukuKeranjang other = (BukuKeranjang) object;
+        BukuCheckout other = (BukuCheckout) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
     }
-    
-    public Buku getBuku(){
-        BukuDAO dao = new BukuDAO();
-        return dao.getBuku(""+ this.idBuku);
-    }
 
     @Override
     public String toString() {
-        return "model.BukuKeranjang[ id=" + id + " ]";
+        return "model.BukuCheckout[ id=" + id + " ]";
     }
     
 }

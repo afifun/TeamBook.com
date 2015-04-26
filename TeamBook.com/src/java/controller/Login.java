@@ -86,36 +86,29 @@ public class Login extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         
-        Akun acc = new Akun();
-        acc.setEmail(email);
-        acc.setPassword(password);
-        
         AkunDAO dao = new AkunDAO();
         KeranjangDAO daoK = new KeranjangDAO();
         
         try {
-            acc = dao.login(acc);
-            if(acc.isValid()){
+            Akun acc = dao.login(email, password);
+            if(acc != null){
                 
                 System.out.println("id akun :" + acc.getId());
-                Keranjang kr = daoK.getKeranjang(acc.getId());
-                List<BukuKeranjang> list = daoK.getItemKeranjang(kr.getIdKeranjang());
+                Keranjang kr = daoK.getKeranjangByAkun("" + acc.getId());
                 HttpSession session = request.getSession(true);
                 session.setAttribute("currentSessionUser", acc);
                 session.setAttribute("currentSessionCart", kr);  
-                session.setAttribute("item_sum", "(" + list.size() + ")");
+                session.setAttribute("item_sum", "(" + kr.size() + ")");
                 response.sendRedirect("Index");
+                
             }
             else {
-                if (acc.getPassword() != null) {
-				request.setAttribute("respon", "Username/password anda salah");
-				request.getRequestDispatcher("login.jsp").forward(request,
+                
+                System.out.println("gak jalan");
+		request.setAttribute("respon", "Username/password anda salah");
+		request.getRequestDispatcher("login.jsp").forward(request,
 						response);
-			} else {
-				request.setAttribute("respon", "");
-				request.getRequestDispatcher("login.jsp").forward(request,
-						response);
-			}
+                
             }
         } catch (Exception ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);

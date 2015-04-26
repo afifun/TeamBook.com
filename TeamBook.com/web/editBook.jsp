@@ -55,23 +55,37 @@
                             <form id="main-contact-form" action="EditBook" class="contact-form row" name="contact-form" method="post" enctype="multipart/form-data">
                                 <input type="hidden" name="id" value="${bukuobj.getId()}" class="form-control" required="required" placeholder="Judul">
                                 
-                                <div class="form-group col-md-12">
+                                <div class="form-group col-lg-6">
                                     <input type="text" name="judul" value="${bukuobj.getJudul()}" class="form-control" required="required" placeholder="Judul">
+                                </div>
+                                
+                                <div class="form-group col-lg-6">
+                                    <input type="date" name="tanggal_terbit" value=${bukuobj.getPublishDate()} class="form-control"  required="required" placeholder="Tanggal Terbit">
+                                
                                 </div>
     
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <select class="form-control" name="kategori">
                                             <option value="">-- pilih kategori --</option>
-                                            <option value="fiksi"
-                                                    <c:if test="${bukuobj.getKategori() == 'fiksi'}">selected</c:if>
+                                            <option value="Fiksi"
+                                                    <c:if test="${bukuobj.getKategori() == 'Fiksi'}">selected</c:if>
                                                     >Fiksi</option>
-                                            <option value="non_fiksi"<c:if test="${bukuobj.getKategori() == 'non_fiksi'}">selected</c:if>>Non Fiksi</option>
+                                            <option value="Non Fiksi"<c:if test="${bukuobj.getKategori() == 'Non Fiksi'}">selected</c:if>>Non Fiksi</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <input type="text" name="isbn" value="${bukuobj.getIsbn()}" class="form-control" required="required" placeholder="ISBN" > 
+                                </div>
+                                
+                                <div class="col-lg-12"></div>
+                                  
+                                <div class="form-group col-lg-6">
+                                    <input type="text" name="pengarang" value="${bukuobj.getAuthor()}" class="form-control" required="required" placeholder="Pengarang"> 
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <input type="text" name="penerbit" value="${bukuobj.getPenerbit()}" class="form-control" required="required" placeholder="penerbit"> 
                                 </div>
 
                                 <div class="form-group col-md-12">
@@ -82,17 +96,15 @@
                                     <input type="text" name="harga" value="${bukuobj.getHarga()}" class="form-control" required="required" placeholder="harga"> 
                                 </div>
                                 
-                                
-                                
                                 <div class="col-lg-6">
                                     <div class="form-group" data-role="input-control">
                                         <input class="form-control" placeholder="image.jpg" type="file"
-                                               name="gambar" value="${bukuobj.getGambarPath()}" accept="image/*">
+                                               name="gambar" value="${bukuobj.getGambar()}" accept="image/*">
                                     </div>
                                 </div>
                                 
                                 <div class="col-lg-6 pull-right">
-                                    <img style="height:60px;width: 60px;" src="${bukuobj.getGambarPath()}">
+                                    <img style="height:60px;width: 60px;" src="${bukuobj.getGambar()}">
                                 </div>
                                 
                                 

@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dao.BukuKeranjangDAO;
 import dao.KeranjangDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -67,22 +68,20 @@ public class AddToCart extends HttpServlet {
 //        processRequest(request, response);
         
         String idB = request.getParameter("id");
-        KeranjangDAO dao = new KeranjangDAO();
+        BukuKeranjangDAO dao = new BukuKeranjangDAO();
         Keranjang keranjangTmp = (Keranjang) request.getSession().getAttribute("currentSessionCart");
         
+        BukuKeranjang item = new BukuKeranjang();
+        item.setIdBuku(Integer.parseInt(idB));
+        item.setIdKeranjang(keranjangTmp.getIdKeranjang());
         
-        
-        try {
-           if (dao.addItem(idB, keranjangTmp.getIdKeranjang())){
-               List<BukuKeranjang> list = dao.getItemKeranjang(keranjangTmp.getIdKeranjang());
-               HttpSession session = request.getSession(true);
-               session.setAttribute("item_sum", "(" + list.size() + ")");
-                String site = "Index";
-                response.setStatus(response.SC_MOVED_TEMPORARILY);
-                response.setHeader("Location", site);
-           }
-        } catch (SQLException ex) {
-            Logger.getLogger(AddToCart.class.getName()).log(Level.SEVERE, null, ex);
+        if (dao.add(item)){
+            List<BukuKeranjang> list = keranjangTmp.getItemsKeranjang();
+            HttpSession session = request.getSession(true);
+            session.setAttribute("item_sum", "(" + list.size() + ")");
+            String site = "Index";
+            response.setStatus(response.SC_MOVED_TEMPORARILY);
+            response.setHeader("Location", site);
         }
         
     }

@@ -23,66 +23,49 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.Persistence;
 import model.Akun;
+import model.Buku;
 import model.Buku;
 
 public class BukuDAO {
+    
 
-    static Connection currentCon = null;
-    static ConnectionManager con = null;
-    static ResultSet rs = null;
-    String propertiesFileName = "config.properties";
-    Properties properti = null;
+    private EntityManager manager;
 
-    public BukuDAO() throws IOException {
-        con = new ConnectionManager();
-        currentCon = con.getConnection();
+    public BukuDAO() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("TeamBook.comPU");
+        this.manager = emf.createEntityManager();
     }
 
-    public boolean create(Buku buku) throws IOException, SQLException {
+    public Buku getBuku(String id) {
+        Buku co = (Buku) manager.createNamedQuery("Buku.findById").setParameter("id", Integer.parseInt(id)).getSingleResult();
+        if (co == null) {
+            throw new EntityNotFoundException("Tidak dapat menemukan checkout dengan id " + id);
+        }
+        return co;
+    }
 
-        con = new ConnectionManager();
-        currentCon = con.getConnection();
+    public List<Buku> getListBuku() {
+        List<Buku> co_list = new ArrayList();
+        List result_list = manager.createNamedQuery("Buku.findAll").getResultList();
 
-        boolean isSucces = false;
+        for (Object item : result_list) {
+            co_list.add((Buku) item);
+        }
+        return co_list;
+    }
 
-        String judul = buku.getJudul();
-        String kategori = buku.getKategori();
-        String isbn = buku.getIsbn();
-        String deskripsi = buku.getDeskripsi();
-        String harga = buku.getHarga();
-        InputStream filecontent = buku.getGambar();
+    public boolean add(Buku newCo, InputStream filecontent) {
+        try {
+            manager.getTransaction().begin();
+            manager.persist(newCo);
+            manager.getTransaction().commit();
 
-        PreparedStatement psmt = null;
-
-        String query = "insert into buku values(?,?,?,?,?,?,?)";
-
-        psmt = currentCon.prepareStatement(query);
-
-        psmt.setString(1, null);
-
-        psmt.setString(2, isbn);
-        System.out.println("isbn : " + isbn);
-
-        psmt.setString(3, judul);
-        System.out.println("judul : " + judul);
-
-        psmt.setString(4, kategori);
-        System.out.println("kategori : " + kategori);
-
-        psmt.setString(5, deskripsi);
-        System.out.println("deskripsi : " + deskripsi);
-
-        psmt.setString(6, "images/" + isbn + ".jpg");
-
-        psmt.setString(7, harga);
-        System.out.println("harga : " + harga);
-
-        int rowsUpdate = psmt.executeUpdate();
-
-        if (rowsUpdate > 0) {
-
-            OutputStream outputStream = new FileOutputStream(new File("C:/Users/moh.afifun/Documents/GitHub/TeamBook.com/TeamBook.com/web/images/" + isbn + ".jpg"));
+            OutputStream outputStream = new FileOutputStream(new File("C:/Users/moh.afifun/Documents/GitHub/TeamBook.com/TeamBook.com/web/images/" + newCo.getIsbn() + ".jpg"));
 
             int read = 0;
             byte[] bytes = new byte[2048];
@@ -98,7 +81,6 @@ public class BukuDAO {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             }
             if (outputStream != null) {
                 try {
@@ -107,54 +89,19 @@ public class BukuDAO {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             }
-
-            isSucces = true;
-        } else {
-            System.out.println("GAK MASUK WOI");
+            return true;
+        } catch (Exception e) {
+            return false;
         }
-        return isSucces;
-
     }
-
-    public boolean update(Buku buku) throws IOException, SQLException {
-
-        Statement stmt = null;
-
-        boolean isSucces = false;
-        int update;
-        String id = buku.getId();
-        String judul = buku.getJudul();
-        String kategori = buku.getKategori();
-        String isbn = buku.getIsbn();
-        String deskripsi = buku.getDeskripsi();
-        String harga = buku.getHarga();
-        String gambar = buku.getGambarPath();
-        InputStream filecontent = buku.getGambar();
-
-        PreparedStatement psmt = null;
-
-        String query = "update buku set isbn = '" + isbn + "', judul = '" + judul + "', kategori = '" + kategori + "', deskripsi = '" + deskripsi + "', harga = '" + harga + "' where id ='" + id + "'";
-        psmt = currentCon.prepareStatement(query);
-        
-        System.out.println("gambar : " + gambar);
-        
-        System.out.println("isbn : " + isbn);
-
-        System.out.println("judul : " + judul);
-
-        System.out.println("kategori : " + kategori);
-
-        System.out.println("deskripsi : " + deskripsi);
-
-        System.out.println("harga : " + harga);
-
-        int rowsUpdate = psmt.executeUpdate();
-
-        if (rowsUpdate > 0 && filecontent != null) {
+    
+    public boolean update(Buku newCo, InputStream filecontent) {
+        try {
             
-            File f = new File("C:/Users/moh.afifun/Documents/GitHub/TeamBook.com/TeamBook.com/web/images/buku/" + isbn + ".jpg");
+            if (filecontent != null) {
+            
+            File f = new File("C:/Users/moh.afifun/Documents/GitHub/TeamBook.com/TeamBook.com/web/images/buku/" + newCo.getIsbn()+ ".jpg");
 
             Boolean flag = false;
             
@@ -162,7 +109,7 @@ public class BukuDAO {
                 flag = f.delete();
             }
                         
-            OutputStream outputStream = new FileOutputStream(new File("C:/Users/moh.afifun/Documents/GitHub/TeamBook.com/TeamBook.com/web/images/buku/" + isbn + ".jpg"));
+            OutputStream outputStream = new FileOutputStream(new File("C:/Users/moh.afifun/Documents/GitHub/TeamBook.com/TeamBook.com/web/images/buku/" + newCo.getIsbn()+ ".jpg"));
 
             int read = 0;
             byte[] bytes = new byte[2048];
@@ -189,99 +136,39 @@ public class BukuDAO {
 
             }
             
-            String query2 = "update buku set gambar = '" + "images/buku/" + isbn + ".jpg'" +  "' where id ='" + id + "'";
-            psmt = currentCon.prepareStatement(query);
-            psmt.executeUpdate();
-            
-            isSucces = true;
         } else {
             System.out.println("GAK MASUK WOI");
         }
-        return isSucces;
-
-    }
-
-    public List<Buku> getAllListBuku() throws IOException, SQLException {
-        con = new ConnectionManager();
-        currentCon = con.getConnection();
-
-        String query = "select * from buku";
-
-        PreparedStatement psmt = currentCon.prepareStatement(query);
-
-        ResultSet rs = psmt.executeQuery();
-
-        List<Buku> list = new ArrayList();
-
-        while (rs.next()) {
-            Buku buku = new Buku();
-            buku.setId(rs.getString("id"));
-            buku.setJudul(rs.getString("judul"));
-            buku.setHarga(rs.getString("harga"));
-            buku.setDeskripsi(rs.getString("deskripsi"));
-            buku.setIsbn(rs.getString("isbn"));
-            buku.setKategori(rs.getString("kategori"));
-            buku.setGambarPath(rs.getString("gambar"));
-
-            list.add(buku);
+            
+            manager.getTransaction().begin();
+            manager.merge(newCo);
+            manager.getTransaction().commit();
+            
+            return true;
+        } catch (Exception e) {
+            return false;
         }
-        return list;
-    }
-
-    public boolean delete(String isbn) throws SQLException {
-
-        boolean isSucces = false;
-
-        Statement stmt = null;
-        String query = "DELETE FROM buku where isbn = " + isbn;
-
-        stmt = currentCon.createStatement();
-        int rowsUpdate = stmt.executeUpdate(query);
-        if (rowsUpdate > 0) {
-            isSucces = true;
-        }
-
-        return isSucces;
     }
     
-    
-    public List<Buku> getListBuku(List<Integer> id) throws IOException, SQLException {
-        
+    public boolean delete(String id) {
+        try {
+            
+            Buku co = getBuku(id);
+            manager.getTransaction().begin();
+            manager.remove(co);
+            manager.getTransaction().commit();
+            
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }  
+
+    public List<Buku> getListBuku(List<Integer> id) throws IOException, SQLException {        
         List<Buku> list = new ArrayList();
         for (Integer id1 : id) {
             list.add(getBuku(""+id1)); 
         }
         return list;
     }
-    
-    public Buku getBuku(String id) throws SQLException, IOException {
-        boolean isSucces = false;
-
-        con = new ConnectionManager();
-        currentCon = con.getConnection();
-
-        String query = "select * from buku where id = " + id;
-
-        PreparedStatement psmt = currentCon.prepareStatement(query);
-
-        ResultSet rs = psmt.executeQuery();
-
-        List<Buku> list = new ArrayList();
-
-        while (rs.next()) {
-            Buku buku = new Buku();
-            buku.setId(rs.getString("id"));
-            buku.setJudul(rs.getString("judul"));
-            buku.setHarga(rs.getString("harga"));
-            buku.setDeskripsi(rs.getString("deskripsi"));
-            buku.setIsbn(rs.getString("isbn"));
-            buku.setKategori(rs.getString("kategori"));
-            buku.setGambarPath(rs.getString("gambar"));
-            System.out.println("gamabarku : " + rs.getString("gambar"));
-            list.add(buku);
-
-        }
-        return list.get(0);
-    }
-
 }

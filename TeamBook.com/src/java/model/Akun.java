@@ -5,83 +5,104 @@
  */
 package model;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author moh.afifun
  */
-public class Akun {
+@Entity
+@Table(name = "akun")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Akun.findAll", query = "SELECT a FROM Akun a"),
+    @NamedQuery(name = "Akun.findById", query = "SELECT a FROM Akun a WHERE a.id = :id"),
+    @NamedQuery(name = "Akun.findByNama", query = "SELECT a FROM Akun a WHERE a.nama = :nama"),
+    @NamedQuery(name = "Akun.findByPassword", query = "SELECT a FROM Akun a WHERE a.password = :password"),
+    @NamedQuery(name = "Akun.findByEmail", query = "SELECT a FROM Akun a WHERE a.email = :email"),
+    @NamedQuery(name = "Akun.findByPhone", query = "SELECT a FROM Akun a WHERE a.phone = :phone"),
+    @NamedQuery(name = "Akun.findByProvinsi", query = "SELECT a FROM Akun a WHERE a.provinsi = :provinsi"),
+    @NamedQuery(name = "Akun.findByKota", query = "SELECT a FROM Akun a WHERE a.kota = :kota"),
+    @NamedQuery(name = "Akun.findByKodePos", query = "SELECT a FROM Akun a WHERE a.kodePos = :kodePos"),
+    @NamedQuery(name = "Akun.findByIsAdmin", query = "SELECT a FROM Akun a WHERE a.isAdmin = :isAdmin")})
+public class Akun implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
+    @Basic(optional = false)
+    @Column(name = "nama")
+    private String nama;
+    @Basic(optional = false)
+    @Column(name = "password")
+    private String password;
+    @Basic(optional = false)
+    @Column(name = "email")
+    private String email;
+    @Basic(optional = false)
+    @Column(name = "phone")
+    private String phone;
+    @Basic(optional = false)
+    @Column(name = "provinsi")
+    private String provinsi;
+    @Basic(optional = false)
+    @Column(name = "kota")
+    private String kota;
+    @Basic(optional = false)
+    @Column(name = "kode_pos")
+    private String kodePos;
+    @Basic(optional = false)
+    @Lob
+    @Column(name = "alamat_shipping")
+    private String alamatShipping;
+    @Basic(optional = false)
+    @Lob
+    @Column(name = "alamat_default")
+    private String alamatDefault;
+    @Basic(optional = false)
+    @Column(name = "isAdmin")
+    private boolean isAdmin;
 
-    public Akun load(ResultSet rs) throws SQLException {
-        Akun acc = new Akun();
-
-        String value = null;
-        
-        value = rs.getString(1);
-        if (value != null) {
-            acc.setId(value);
-        } else {
-            acc.setId(null);
-        }
-
-        value = rs.getString(2);
-        if (value != null) {
-            acc.setNama(value);
-        } else {
-            acc.setNama(null);
-        }
-
-        value = rs.getString(3);
-        if (value != null) {
-            acc.setPassword(value);
-        } else {
-            acc.setPassword(null);
-        }
-
-        value = rs.getString(4);
-        if (value != null) {
-            acc.setEmail(value);
-        } else {
-            acc.setEmail(null);
-        }
-
-        value = rs.getString(5);
-        if (value != null) {
-            
-            if (value.equalsIgnoreCase("1")){
-                acc.setIsAdmin(true);
-            }
-            else{
-                acc.setIsAdmin(false);
-            }
-        }
-
-        return acc;
+    public Akun() {
     }
 
-    public String getId() {
+    public Akun(Integer id) {
+        this.id = id;
+    }
+
+    public Akun(Integer id, String nama, String password, String email, String phone, String provinsi, String kota, String kodePos, String alamatShipping, String alamatDefault, boolean isAdmin) {
+        this.id = id;
+        this.nama = nama;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
+        this.provinsi = provinsi;
+        this.kota = kota;
+        this.kodePos = kodePos;
+        this.alamatShipping = alamatShipping;
+        this.alamatDefault = alamatDefault;
+        this.isAdmin = isAdmin;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
-    }
-    
-    private String id;
-    private String nama;
-    private String password;
-    private String email;
-    private boolean isAdmin;
-    private boolean valid;
-
-    public boolean isValid() {
-        return valid;
-    }
-
-    public void setValid(boolean valid) {
-        this.valid = valid;
     }
 
     public String getNama() {
@@ -108,7 +129,55 @@ public class Akun {
         this.email = email;
     }
 
-    public boolean isIsAdmin() {
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getProvinsi() {
+        return provinsi;
+    }
+
+    public void setProvinsi(String provinsi) {
+        this.provinsi = provinsi;
+    }
+
+    public String getKota() {
+        return kota;
+    }
+
+    public void setKota(String kota) {
+        this.kota = kota;
+    }
+
+    public String getKodePos() {
+        return kodePos;
+    }
+
+    public void setKodePos(String kodePos) {
+        this.kodePos = kodePos;
+    }
+
+    public String getAlamatShipping() {
+        return alamatShipping;
+    }
+
+    public void setAlamatShipping(String alamatShipping) {
+        this.alamatShipping = alamatShipping;
+    }
+
+    public String getAlamatDefault() {
+        return alamatDefault;
+    }
+
+    public void setAlamatDefault(String alamatDefault) {
+        this.alamatDefault = alamatDefault;
+    }
+
+    public boolean getIsAdmin() {
         return isAdmin;
     }
 
@@ -116,4 +185,29 @@ public class Akun {
         this.isAdmin = isAdmin;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Akun)) {
+            return false;
+        }
+        Akun other = (Akun) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "model.Akun[ id=" + id + " ]";
+    }
+    
 }

@@ -249,12 +249,11 @@
 						<h2 class="title text-center">Daftar Buku</h2>
                                                 
                                                 <c:forEach var="item" items="${listBuku}">
-                                                    
                                                     <div class="col-sm-4">
 							<div class="product-image-wrapper">
 								<div class="single-products">
 										<div class="productinfo text-center">
-											<img  style="width:150px;height: 200px" src="${item.getGambarPath()}" alt="" />
+											<img  style="width:150px;height: 200px" src="${item.getGambar()}" alt="" />
 											<h2>${item.getHarga()}</h2>
 											<p>${item.getJudul()}</p>
 											<a href="AddToCart?id=${item.getId()}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>

@@ -6,6 +6,7 @@
 package controller;
 
 import dao.BukuDAO;
+import dao.BukuKeranjangDAO;
 import dao.KeranjangDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -71,18 +72,14 @@ public class DeleteItemCart extends HttpServlet {
 			response.setHeader("Location", site);
 		}
         String id = request.getParameter("id");
-        KeranjangDAO dao = new KeranjangDAO();
-        try {
-           if(dao.delete(id)){ 
-               request.setAttribute("notifikasi", "Sukses! Buku dengan " + id + " berhasil dihapus.");
-            }
-            else {
-                request.setAttribute("notifikasi", "Gagal! Buku gagal dihapus.");
-            }
-            request.getRequestDispatcher("Cart").forward(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(Delete.class.getName()).log(Level.SEVERE, null, ex);
+        BukuKeranjangDAO dao = new BukuKeranjangDAO();
+        if(dao.delete(id)){
+            request.setAttribute("notifikasi", "Sukses! Buku dengan " + id + " berhasil dihapus.");
         }
+        else {
+            request.setAttribute("notifikasi", "Gagal! Buku gagal dihapus.");
+        }
+        request.getRequestDispatcher("Cart").forward(request, response);
     }
 
     /**

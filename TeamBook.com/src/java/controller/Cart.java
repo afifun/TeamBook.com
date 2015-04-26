@@ -80,22 +80,15 @@ public class Cart extends HttpServlet {
 	}
         else {
                 
-        BukuDAO dao = new BukuDAO();
-        KeranjangDAO daoK = new KeranjangDAO();
         
-        try {
-            
-            List<BukuKeranjang> list = daoK.getItemKeranjang(keranjangTmp.getIdKeranjang());
+            List<BukuKeranjang> list = keranjangTmp.getItemsKeranjang();
             HttpSession session = request.getSession(true);
             System.out.println("list buku " + list);
             session.setAttribute("item_sum", "(" + list.size() + ")");
             request.setAttribute("buku", true);
             request.setAttribute("list", list);
             request.getRequestDispatcher("cart.jsp").forward(request,
-                                                    response);
-        } catch (SQLException ex) {
-            Logger.getLogger(ListBook.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                    response);
         }
     }
 

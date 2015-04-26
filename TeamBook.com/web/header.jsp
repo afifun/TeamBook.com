@@ -33,7 +33,7 @@
                 <div class="col-sm-4">
                     <div class="logo pull-left">
                         <a href="index.jsp"><img src="images/home/logobener.jpg" alt="" /> 
-                            <c:if test="${currentSessionUser.isIsAdmin()}">
+                            <c:if test="${currentSessionUser.getIsAdmin()}">
 						Admin
 					</c:if>
                             </a>
@@ -77,13 +77,15 @@
 
                             <li><a href="checkout.jsp"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                             <li><a href="Cart"><i class="fa fa-shopping-cart"></i> Cart${item_sum}</a></li>
-
+                            
 
                             <c:choose>
                                 <c:when test="${currentSessionUser != null}">
                                     <li><a href="Logout"><i class="fa fa-unlock"></i> Logout</a></li>
                                     </c:when>
                                     <c:otherwise>
+                                    
+                                    <li><a href="Register"><i class="fa fa-pencil-square"></i> Register</a></li>
                                     <li><a href="login.jsp"><i class="fa fa-lock"></i> Login</a></li>
                                     </c:otherwise>
                                 </c:choose>		     
@@ -110,7 +112,7 @@
                         <ul class="nav navbar-nav collapse navbar-collapse">
 
                             <c:choose>
-                                <c:when test="${currentSessionUser.isIsAdmin()}">
+                                <c:when test="${currentSessionUser.getIsAdmin()}">
                                     <li><a href="Index" class="active"
                                            <c:if test="${home}"> class="active" </c:if>>Home</a></li>
                                     <li><a href="ListBook"

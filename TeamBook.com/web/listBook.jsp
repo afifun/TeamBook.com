@@ -101,10 +101,10 @@
                                             <td>${item.getDeskripsi()}</td>
                                             <td>${item.getHarga()}</td>
                                             <td>
-                                                <img style="height:50px;width: 50px;" src="${item.getGambarPath()}"></td>
+                                                <img style="height:50px;width: 50px;" src="${item.getGambar()}"></td>
                                             <td>
                                                 <a href="EditBook?id=${item.getId()}"><button class="btn btn-primary"><span class="glyphicon-pencil"></span> Edit</button></a>
-                                                <a href="Delete?isbn=${item.getIsbn()}"><button class="btn btn-primary"><span class="glyphicon-trash"></span> Delete</button></a>
+                                                <a href="Delete?id=${item.getId()}"><button class="btn btn-primary"><span class="glyphicon-trash"></span> Delete</button></a>
                                             </td>
                                         </tr>   
                                     </c:forEach>

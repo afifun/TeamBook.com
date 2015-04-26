@@ -67,20 +67,16 @@ public class ListAkun extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
         Akun temp = (Akun) request.getSession().getAttribute("currentSessionUser");
-		if(temp == null || !temp.isIsAdmin()){
+		if(temp == null || !temp.getIsAdmin()){
 			String site = "Login" ;
 			response.setStatus(response.SC_MOVED_TEMPORARILY);
 			response.setHeader("Location", site);
 		}
         AkunDAO dao = new AkunDAO();
         
-        try {
-            List<Akun> list = dao.getAllListAkun();
-            request.setAttribute("akun", true);
-            request.setAttribute("listAkun", list);
-        } catch (SQLException ex) {
-            Logger.getLogger(ListBook.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        List<Akun> list = dao.getListAkun();
+        request.setAttribute("akun", true);
+        request.setAttribute("listAkun", list);
         request.getRequestDispatcher("listAkun.jsp").forward(request,
 						response);
     }

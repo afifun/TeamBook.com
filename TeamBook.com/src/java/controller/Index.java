@@ -6,9 +6,7 @@ package controller;
  * and open the template in the editor.
  */
 
-import dao.AkunDAO;
 import dao.BukuDAO;
-import dao.KeranjangDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -71,15 +69,11 @@ public class Index extends HttpServlet {
 //        processRequest(request, response);
         
         BukuDAO dao = new BukuDAO();
-        try {
-            List<Buku> list = dao.getAllListBuku();
-            request.setAttribute("buku", true);
-            request.setAttribute("listBuku", list);
-            request.getRequestDispatcher("index.jsp").forward(request,
-						response);
-        } catch (SQLException ex) {
-            Logger.getLogger(ListBook.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        List<Buku> list = dao.getListBuku();
+        request.setAttribute("buku", true);
+        request.setAttribute("listBuku", list);
+        request.getRequestDispatcher("index.jsp").forward(request,
+                response);
         
     
     }

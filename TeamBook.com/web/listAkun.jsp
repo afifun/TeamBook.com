@@ -88,7 +88,7 @@
                                             <td>
                                                 
                                                 <c:choose>
-                                                    <c:when test="${item.isIsAdmin()}">
+                                                    <c:when test="${item.getIsAdmin()}">
                                                         admin
                                                     </c:when>
                                                     <c:otherwise>

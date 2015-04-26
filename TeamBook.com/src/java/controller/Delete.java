@@ -63,24 +63,20 @@ public class Delete extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
          Akun temp = (Akun) request.getSession().getAttribute("currentSessionUser");
-		if(temp == null || !temp.isIsAdmin()){
+		if(temp == null || !temp.getIsAdmin()){
 			String site = "Login" ;
 			response.setStatus(response.SC_MOVED_TEMPORARILY);
 			response.setHeader("Location", site);
 		}
-        String isbn = request.getParameter("isbn");
+        String id = request.getParameter("id");
         BukuDAO dao = new BukuDAO();
-        try {
-           if(dao.delete(isbn)){ 
-               request.setAttribute("notifikasi", "Sukses! Buku dengan " + isbn + " berhasil dihapus.");
-            }
-            else {
-                request.setAttribute("notifikasi", "Gagal! Buku gagal dihapus.");
-            }
-            request.getRequestDispatcher("ListBook").forward(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(Delete.class.getName()).log(Level.SEVERE, null, ex);
+        if(dao.delete(id)){
+            request.setAttribute("notifikasi", "Sukses! Buku dengan id " + id + " berhasil dihapus.");
         }
+        else {
+            request.setAttribute("notifikasi", "Gagal! Buku gagal dihapus.");
+        }
+        request.getRequestDispatcher("ListBook").forward(request, response);
     }
 
     /**

@@ -1,4 +1,4 @@
-<%-- 
+    <%-- 
     Document   : footer
     Created on : Apr 23, 2015, 10:05:58 PM
     Author     : moh.afifun
@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <footer id="footer"><!--Footer-->
+        <footer id="footer" style="margin-top: 100px"><!--Footer-->
 		<div class="footer-top">
 			<div class="container">
 				<div class="row">

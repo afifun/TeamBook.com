@@ -53,8 +53,11 @@
                             </div>
                                  
                             <form id="main-contact-form" action="AddBook" class="contact-form row" name="contact-form" method="post" enctype="multipart/form-data">
-                                <div class="form-group col-md-12">
+                                <div class="form-group col-lg-6">
                                     <input type="text" name="judul" class="form-control" required="required" placeholder="Judul">
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <input type="date" name="tanggal_terbit" class="form-control" required="required" placeholder="Tanggal Terbit">
                                 </div>
 
                                 <div class="col-lg-6">
@@ -69,11 +72,18 @@
                                 <div class="col-lg-6">
                                     <input type="text" name="isbn" class="form-control" required="required" placeholder="ISBN"> 
                                 </div>
-
+                                <div class="col-lg-12"></div>
+                                  
+                                <div class="form-group col-lg-6">
+                                    <input type="text" name="pengarang" class="form-control" required="required" placeholder="Pengarang"> 
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <input type="text" name="penerbit" class="form-control" required="required" placeholder="penerbit"> 
+                                </div>
+                                
                                 <div class="form-group col-md-12">
                                     <textarea name="deskripsi" id="message" required="required" class="form-control" rows="8" placeholder="Tulis Deskripsi Buku Disini!"></textarea>
                                 </div>
-
                                 <div class="col-lg-6">
                                     <input type="text" name="harga" class="form-control" required="required" placeholder="harga"> 
                                 </div>
