@@ -69,14 +69,18 @@
                             <c:choose>
                                 <c:when test="${currentSessionUser != null}">
                                     <li><a href="#"><i class="fa fa-user"></i> ${currentSessionUser.getNama()}</a></li>
-                                    </c:when>
-                                    <c:otherwise>
-                                    <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
-                                    </c:otherwise>
-                                </c:choose>	
+                                </c:when>
+                            </c:choose>	
 
-                            <li><a href="ListCheckout?id=${currentSessionUser.getId()}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                            <li><a href="Cart"><i class="fa fa-shopping-cart"></i> Cart${item_sum}</a></li>
+                            <c:choose>
+                                <c:when test="${currentSessionUser != null}">
+                                    <li><a href="ListCheckout?id=${currentSessionUser.getId()}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+                                    <li><a href="Cart"><i class="fa fa-shopping-cart"></i> Cart${item_sum}</a></li>
+                                </c:when>
+                            </c:choose>
+                            <!--<li><a href="ListCheckout?id=${currentSessionUser.getId()}"><i class="fa fa-crosshairs"></i> Checkout</a></li>-->
+                            
+                            <!--<li><a href="Cart"><i class="fa fa-shopping-cart"></i> Cart${item_sum}</a></li>-->
                             
 
                             <c:choose>
