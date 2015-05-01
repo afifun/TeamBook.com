@@ -59,7 +59,7 @@
                                                                 <tbody>
                                                                     <tr>
                                                                         <td>Perusahaan Kurir</td>
-                                                                        <td>: <strong>Afifun Naily</strong></td>
+                                                                        <td>: <strong>PenToLine</strong></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Jenis Servis</td>
@@ -69,7 +69,7 @@
                                                             </table>
 								
 							</form>
-                                                    <a class="btn btn-primary" href="checkout-3.jsp">Continue</a>
+                                                    <a class="btn btn-primary pull-right" href="CheckoutStep3">Continue >></a>
 						</div>
 					</div>				
 				</div>

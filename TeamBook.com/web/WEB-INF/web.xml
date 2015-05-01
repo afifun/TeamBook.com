@@ -44,6 +44,38 @@
         <servlet-name>DeleteItemCart</servlet-name>
         <servlet-class>controller.DeleteItemCart</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Shop</servlet-name>
+        <servlet-class>controller.Shop</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DetilBuku</servlet-name>
+        <servlet-class>controller.DetilBuku</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckoutStep1</servlet-name>
+        <servlet-class>controller.CheckoutStep1</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckoutStep2</servlet-name>
+        <servlet-class>controller.CheckoutStep2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckoutStep3</servlet-name>
+        <servlet-class>controller.CheckoutStep3</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckoutStep4</servlet-name>
+        <servlet-class>controller.CheckoutStep4</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserCheckout</servlet-name>
+        <servlet-class>controller.UserCheckout</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListCheckout</servlet-name>
+        <servlet-class>controller.ListCheckout</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -87,6 +119,38 @@
     <servlet-mapping>
         <servlet-name>DeleteItemCart</servlet-name>
         <url-pattern>/DeleteItemCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Shop</servlet-name>
+        <url-pattern>/Shop</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetilBuku</servlet-name>
+        <url-pattern>/DetilBuku</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckoutStep1</servlet-name>
+        <url-pattern>/CheckoutStep1</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckoutStep2</servlet-name>
+        <url-pattern>/CheckoutStep2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckoutStep3</servlet-name>
+        <url-pattern>/CheckoutStep3</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckoutStep4</servlet-name>
+        <url-pattern>/CheckoutStep4</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserCheckout</servlet-name>
+        <url-pattern>/UserCheckout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListCheckout</servlet-name>
+        <url-pattern>/ListCheckout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

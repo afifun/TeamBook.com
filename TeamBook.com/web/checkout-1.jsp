@@ -59,30 +59,30 @@
                                                                 <tbody>
                                                                     <tr>
                                                                         <td>Nama</td>
-                                                                        <td>: <strong>Afifun Naily</strong></td>
+                                                                        <td>: <strong>${currentAkun.getNama()}</strong></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Provinsi</td>
-                                                                        <td>: <strong>Jawa Barat</strong></td>
+                                                                        <td>: <strong>${currentAkun.getProvinsi()}</strong></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Kota</td>
-                                                                        <td>: <strong>Depok</strong></td>
+                                                                        <td>: <strong>${currentAkun.getKota()}</strong></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Kode Pos</td>
-                                                                        <td>: <strong>16424</strong></td>
+                                                                        <td>: <strong>${currentAkun.getKodePos()}</strong></td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td>Alamat </td>
-                                                                        <td>: <strong>Kelurahan Pondok Cina</strong></td>
+                                                                        <td>Alamat Pengiriman </td>
+                                                                        <td>: <strong>${currentAkun.getAlamatShipping()}</strong></td>
                                                                     </tr>
                                                                     
                                                                 </tbody>
                                                             </table>
 								
 							</form>
-                                                    <a class="btn btn-primary" href="checkout-2.jsp">Continue</a>
+                                                    <a class="btn btn-primary pull-right" href="CheckoutStep2">Continue >></a>
 						</div>
 					</div>				
 				</div>
@@ -127,21 +127,7 @@
                         </div>
                                 </div>
                         
-			<div class="review-payment">
-				<h2>Review & Payment</h2>
-			</div>
-
-			<div class="payment-options">
-					<span>
-						<label><input type="checkbox"> Direct Bank Transfer</label>
-					</span>
-					<span>
-						<label><input type="checkbox"> Check Payment</label>
-					</span>
-					<span>
-						<label><input type="checkbox"> Paypal</label>
-					</span>
-				</div>
+			
 		</div>
 	</section> <!--/#cart_items-->
 

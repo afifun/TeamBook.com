@@ -75,7 +75,7 @@
                                     </c:otherwise>
                                 </c:choose>	
 
-                            <li><a href="checkout.jsp"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+                            <li><a href="ListCheckout?id=${currentSessionUser.getId()}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                             <li><a href="Cart"><i class="fa fa-shopping-cart"></i> Cart${item_sum}</a></li>
                             
 
@@ -131,7 +131,7 @@
                                     <c:otherwise>
                                     <li><a href="Index" class="active"
                                            <c:if test="${home}"> class="active" </c:if>>Home</a></li>
-                                    <li><a href="ListBook"
+                                    <li><a href="Shop"
                                         <c:if test="${buku}"> class="active" </c:if>>
                                             Buku
                                         </a>

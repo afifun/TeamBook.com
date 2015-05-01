@@ -46,6 +46,68 @@
                     <div class="review-payment">
 				<h2>Detil Checkout</h2>
 			</div>
+                    
+                    <div class="container">
+			<div class="row">
+                            <div class="col-sm-6">
+                                    <h3>Penerima</h3>
+                                <div class="total_area">
+						<table>
+                                                                <tbody>
+                                                                    
+                                                                    <tr>
+                                                                        <td>Nama</td>
+                                                                        <td>: <strong>${currentSessionUser.getNama()}</strong></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Provinsi</td>
+                                                                        <td>: <strong>${currentSessionUser.getProvinsi()}</strong></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Kota</td>
+                                                                        <td>: <strong>${currentSessionUser.getKota()}</strong></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Kode Pos</td>
+                                                                        <td>: <strong>${currentSessionUser.getKodePos()}</strong></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Alamat Pengiriman </td>
+                                                                        <td>: <strong>${currentSessionUser.getAlamatShipping()}</strong></td>
+                                                                    </tr>
+                                                                    
+                                                                </tbody>
+                                                            </table>
+			         </div>
+                            </div>
+                                                                    
+                                                                    <div class="col-sm-6">
+                                                                        <h3>Kurir</h3>
+                                                                        
+                                                                        <div class="total_area">
+						<table >
+                                                                <tbody>
+                                                                    
+                                                                    <tr>
+                                                                        <td>Nama Perusahaan</td>
+                                                                        <td>: <strong>${nama_kurir}</strong></td>
+                                                                    </tr>
+                                                                    
+                                                                    <tr>
+                                                                        <td>Jenis Paket</td>
+                                                                        <td>: <strong>${jenis_paket}</strong></td>
+                                                                    </tr>
+                                                                    
+                                                                </tbody>
+                                                            </table>
+			         </div>
+                                                                    </div>
+				
+			</div>
+		</div>
+                                                                    <br>
+                                                                    <br>
+                                                                    
 			<div class="table-responsive cart_info">
 				<table class="table table-condensed">
 					<thead>
@@ -59,7 +121,7 @@
 						</tr>
 					</thead>
 					<tbody>
-                                            
+                                            <c:set var="total" scope="session" value="${0}"/>
                                             <c:forEach var="item" items="${list}">
                                                 <tr>
 							<td class="cart_product">
@@ -70,7 +132,7 @@
 								<p>${item.getBuku().getId()}</p>
 							</td>
 							<td class="cart_price">
-								<p>${item.getBuku().getHarga()}</p>
+								<p>Rp. ${item.getBuku().getHarga()}</p>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
@@ -80,7 +142,9 @@
 								</div>
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price">${item.getKuantitas()*item.getBuku().getHarga()}</p>
+                                                            
+                                                                <c:set var="total" scope="session" value="${total + (item.getKuantitas()*item.getBuku().getHarga())}"/>
+								<p class="cart_total_price">Rp. ${item.getKuantitas()*item.getBuku().getHarga()}</p>
 							</td>
 							<td class="cart_delete">
                                                             <a href="DeleteItemCart?id=${item.getId()}" class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
@@ -93,19 +157,22 @@
 			</div>
 		</div>
 	</section> <!--/#cart_items-->
-
 	<section id="do_action">
 		<div class="container">
 			<div class="row">
-                            <div class="col-sm-6"></div>
+                            <div class="col-sm-6">
+                            </div>
 				<div class="col-sm-6">
+                                    <h3></h3>
 					<div class="total_area">
 						<ul>
-							<li>Total Keranjang <span>$59</span></li>
-							<li>Biaya Pengiriman <span>Free</span></li>
-							<li>Total <span>$61</span></li>
+							<li>Total Keranjang <span>Rp. <c:out value="${total}"/></span></li>
+							<li>Biaya Pengiriman <span>Rp. ${biaya}</span></li>
+							<li>Total <span>Rp. ${total + biaya}</span></li>
+                                                        <br>
+                                                        <p>Transfer via Bank <strong>${nama_bank}</strong></p>
 						</ul>
-							<a class="btn btn-default update" href="">Checkout</a>
+							<a class="btn btn-default update" href="UserCheckout">Checkout</a>
 					</div>
 				</div>
 			</div>

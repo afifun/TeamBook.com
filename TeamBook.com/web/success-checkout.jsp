@@ -1,10 +1,9 @@
 <%-- 
-    Document   : cart
-    Created on : Mar 11, 2015, 5:08:17 PM
+    Document   : contact-us
+    Created on : Mar 11, 2015, 5:09:08 PM
     Author     : moh.afifun
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Cart | Teambook</title>
+    <title>Checkout | Teambook</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">
@@ -34,65 +33,29 @@
 
 <body>
 	<jsp:include page="header.jsp" flush="false" />
-	<section id="cart_items">
-		<div class="container">
-			<div class="breadcrumbs">
-				<ol class="breadcrumb">
-				  <li><a href="#">Home</a></li>
-				  <li class="active">Keranjang Belanja</li>
-                                  
-				</ol>
-			</div>
-			<div class="table-responsive cart_info">
-				<table class="table table-condensed">
-					<thead>
-						<tr class="cart_menu">
-							<td class="image">Item</td>
-							<td class="description"></td>
-							<td class="price">Harga</td>
-							<td class="quantity">Jumlah</td>
-							<td class="total">Total</td>
-							<td></td>
-						</tr>
-					</thead>
-					<tbody>
-                                            
-                                            <c:forEach var="item" items="${list}">
-                                                <tr>
-							<td class="cart_product">
-								<a href=""><img style="height:50px;width: 50px;" src="${item.getBuku().getGambar()}" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">${item.getBuku().getJudul()}</a></h4>
-								<p>${item.getBuku().getId()}</p>
-							</td>
-							<td class="cart_price">
-								<p>${item.getBuku().getHarga()}</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="${item.getKuantitas()}" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">${item.getKuantitas()*item.getBuku().getHarga()}</p>
-							</td>
-							<td class="cart_delete">
-                                                            <a href="DeleteItemCart?id=${item.getId()}" class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-                                                
-                                            </c:forEach>
-					</tbody>
-				</table>
-                           
-			</div>
-                     <a class="btn btn-primary check_out pull-right" href="CheckoutStep1">Continue to Checkout</a>
+	 <div id="contact-page" class="container">
+    	<div class="bg">
+	    	<div class="row">    		
+	    		<div class="col-sm-12">    			   			
+					<h2 class="title text-center">sukses</h2>    			    				    				
+					
+				</div>	
+                    <div class="container text-center">
+		
+		<div class="content-404">
+			<h1><b>Sukses!</b></h1>
+                        <p> Pesanan akan kamu telah tersimpan</p>
+			<h2><a href="ListCheckout">Klik! untuk melihat detil pesanan</a></h2>
+                        
 		</div>
-	</section> <!--/#cart_items-->
-
+                        <br>
+                        <br>
+	</div>
+			</div>    	
+    		
+    	</div>	
+    </div><!--/#contact-page-->
+	
 	<!--<footer id="footer">
 		<div class="footer-top">
 			<div class="container">
@@ -250,13 +213,16 @@
 		</div>
 		
 	</footer>-->
-	
-        <jsp:include page="footer.jsp" flush="false" />
+	<jsp:include page="footer.jsp" flush="false" />
 
+  
     <script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.scrollUp.min.js"></script>
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+    <script type="text/javascript" src="js/gmaps.js"></script>
+	<script src="js/contact.js"></script>
+	<script src="js/price-range.js"></script>
+    <script src="js/jquery.scrollUp.min.js"></script>
     <script src="js/jquery.prettyPhoto.js"></script>
-    <script src="js/main.js"></script>
 </body>
 </html>

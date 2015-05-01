@@ -11,49 +11,41 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
-import model.Checkout;
+import model.BukuCheckout;
 
 /**
  *
  * @author moh.afifun
  */
-public class CheckoutDAO {
+public class BukuCheckoutDAO {
+    
 
     private EntityManager manager;
 
-    public CheckoutDAO() {
+    public BukuCheckoutDAO() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("TeamBook.comPU");
         this.manager = emf.createEntityManager();
     }
 
-    public Checkout getCheckout(String id) {
-        Checkout co = (Checkout) manager.createNamedQuery("Checkout.findById").setParameter("id", Integer.parseInt(id)).getSingleResult();
+    public BukuCheckout getBukuCheckout(String id) {
+        BukuCheckout co = (BukuCheckout) manager.createNamedQuery("BukuCheckout.findById").setParameter("id", Integer.parseInt(id)).getSingleResult();
         if (co == null) {
-            throw new EntityNotFoundException("Tidak dapat menemukan checkout dengan id " + id);
+            throw new EntityNotFoundException("Tidak dapat menemukan BukuCheckout dengan id " + id);
         }
         return co;
     }
-    
-    public List<Checkout> getCheckoutByAkun(String id) {
-        List<Checkout> co_list = new ArrayList();
-        List result_list = manager.createNamedQuery("Checkout.findByIdAkun").setParameter("idAkun", Integer.parseInt(id)).getResultList();
+
+    public List<BukuCheckout> getListBukuCheckout() {
+        List<BukuCheckout> co_list = new ArrayList();
+        List result_list = manager.createNamedQuery("BukuCheckout.findAll").getResultList();
+
         for (Object item : result_list) {
-            co_list.add((Checkout) item);
+            co_list.add((BukuCheckout) item);
         }
         return co_list;
     }
 
-    public List<Checkout> getListCheckout() {
-        List<Checkout> co_list = new ArrayList();
-        List result_list = manager.createNamedQuery("Checkout.findAll").getResultList();
-
-        for (Object item : result_list) {
-            co_list.add((Checkout) item);
-        }
-        return co_list;
-    }
-
-    public boolean add(Checkout newCo) {
+    public boolean add(BukuCheckout newCo) {
         try {
             manager.getTransaction().begin();
             manager.persist(newCo);
@@ -65,7 +57,7 @@ public class CheckoutDAO {
         }
     }
     
-    public boolean update(Checkout newCo) {
+    public boolean update(BukuCheckout newCo) {
         try {
             manager.getTransaction().begin();
             manager.merge(newCo);
@@ -80,7 +72,7 @@ public class CheckoutDAO {
     public boolean delete(String id) {
         try {
             
-            Checkout co = getCheckout(id);
+            BukuCheckout co = getBukuCheckout(id);
             manager.getTransaction().begin();
             manager.remove(co);
             manager.getTransaction().commit();

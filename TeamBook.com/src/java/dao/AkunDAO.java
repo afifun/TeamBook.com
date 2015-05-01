@@ -114,12 +114,13 @@ public class AkunDAO {
     }
 
     public Akun login(String email, String password) throws Exception {
-        Akun akun = (Akun) manager.createNamedQuery("Akun.findByEmail").setParameter("email", email).getSingleResult();
+        List list = manager.createNamedQuery("Akun.findByEmail").setParameter("email", email).getResultList();
         
-       if(akun == null){
+       if(list == null || list.size() == 0){
             return null;
        }
        else {
+           Akun akun = (Akun) list.get(0);
            if (akun.getPassword().equals(password)){
                return akun;
            }

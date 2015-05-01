@@ -48,23 +48,23 @@
 			<div class="step-one">
 				<h2 class="heading">Step 3 : Informasi Pembayaran</h2>
 			</div>
-
-
 			<div class="shopper-informations">
 				<div class="row">
-					<div class="col-sm-6">
+					<div class="col-sm-12">
 						<div class="shopper-info">
                                                     
                                                     <label><input disabled type="checkbox" checked> Transfer Bank</label>
                                                     <p>Pilih Bank :</p>
-							<form>
-                                                            <label><input name="bank" type="radio"> BNI</label><br>
-                                                                <label><input name="bank" type="radio"> Mandiri</label><br>
-                                                                <label><input name="bank" type="radio"> BCA</label><br>
-                                                                <label><input name="bank" type="radio"> BRI</label><br>
-                                                                <label><input name="bank" type="radio"> Danamon</label><br>
-							</form>
-                                                    <a class="btn btn-primary" href="checkout-4.jsp">Continue</a>
+                                                    <form action="CheckoutStep3" method="POST">
+                                                            <label><input name="bank" type="radio" value="BNI"> BNI</label><br>
+                                                            <label><input name="bank" type="radio" value="Mandiri"> Mandiri</label><br>
+                                                            <label><input name="bank" type="radio" value="BCA"> BCA</label><br>
+                                                            <label><input name="bank" type="radio" value="BRI"> BRI</label><br>
+                                                            <label><input name="bank" type="radio" value="Danamon"> Danamon</label><br>
+                                                            <div class="pull-right">
+                                                            <input class="btn btn-primary" type="submit" value="Continue >>">
+                                                    </div>
+                                                            </form>
 						</div>
 					</div>				
 				</div>
@@ -108,19 +108,6 @@
 			</div>
                         </div>
                                 </div>
-                        
-			
-
-			<div class="payment-options">
-					<span>
-					</span>
-					<span>
-						<label><input type="checkbox"> Check Payment</label>
-					</span>
-					<span>
-						<label><input type="checkbox"> Paypal</label>
-					</span>
-				</div>
 		</div>
 	</section> <!--/#cart_items-->
 
