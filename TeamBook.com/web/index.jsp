@@ -48,12 +48,12 @@
 						<div class="carousel-inner">
 							<div class="item active">
 								<div class="col-sm-6">
-
 									<h1><span>Teambook</span>Store</h1>
 									<h2>Promo bulan April</h2>
 									<p></p>
-									<button type="button" class="btn btn-default get">Dapatkan Promo</button>
-								</div>
+									<!--<button type="button" class="btn btn-default get">Dapatkan Promo</button>-->
+                                                                        <button type="button" class="btn btn-default add-to-cart">Dapatkan Promo</button> <!-- pakai class nya ini biar buttonnya kayak add to cart -->
+                                                                </div>
 								<div class="col-sm-6">
 									<img style="margin-left:100px ; width:300px;height: 400px" src="images/home/baca1.jpg" class="girl img-responsive" alt="" />
 									<!--<img src="images/home/pricing.png"  class="pricing" alt="" />-->
@@ -65,7 +65,8 @@
 									<h1><span>Teambook</span>Store</h1>
 									<h2>Buku Terlaris</h2>
 									<p></p>
-									<button type="button" class="btn btn-default get">Beli Buku</button>
+									<!--<button type="button" class="btn btn-default get">Beli Buku</button>-->
+                                                                        <button type="button" class="btn btn-default add-to-cart">Dapatkan Promo</button> <!-- pakai class nya ini biar buttonnya kayak add to cart -->
 								</div>
 								<div class="col-sm-6">
 									<img style="margin-left: 100px ; width:300px;height: 400px" src="images/home/baca2.jpg" class="girl img-responsive" alt="" />
@@ -78,7 +79,8 @@
 									<h1><span>Teambook</span>Store</h1>
 									<h2>Buku Terlaris</h2>
 									<p></p>
-									<button type="button" class="btn btn-default get">Beli Buku</button>
+									<!--<button type="button" class="btn btn-default get">Beli Buku</button>-->
+                                                                        <button type="button" class="btn btn-default add-to-cart">Dapatkan Promo</button> <!-- pakai class nya ini biar buttonnya kayak add to cart -->
 								</div>
 								<div class="col-sm-6">
 									<img style="margin-left: 100px;width:300px;height: 400px" src="images/home/buku1.jpg" class="girl img-responsive" alt="" />

@@ -917,7 +917,7 @@ h2.title {
 }
 
 .product-overlay .add-to-cart {
-  background:#fff;
+  background:#5C1F00;
   border: 0 none;
   border-radius: 0;
   color: #5C1F00;
@@ -942,9 +942,9 @@ h2.title {
 
 
 .add-to-cart {
-  background:#F5F5ED;
-  border: 0 none;
-  border-radius: 0;
+  background:#EFE9E6;
+    border-style: solid;
+    border-width: 3px;
   color: #696763;
   font-family: 'Roboto', sans-serif;
   font-size: 15px;
