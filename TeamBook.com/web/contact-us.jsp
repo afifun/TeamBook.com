@@ -61,8 +61,9 @@
 				                <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Ketik pesan Anda di sini"></textarea>
 				            </div>                        
 				            <div class="form-group col-md-12">
-				                <input type="submit" name="submit" class="btn btn-primary pull-right" value="Kirim">
-				            </div>
+				               <!-- <input type="submit" name="submit" class="btn btn-primary pull-right" value="Kirim"> -->
+                                               <input type="submit" name="submit" class="btn btn-default pull-right add-to-cart" value="Kirim">
+                                            </div>
 				        </form>
 	    			</div>
 	    		</div>

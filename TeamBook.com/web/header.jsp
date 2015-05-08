@@ -33,6 +33,7 @@
                 <div class="col-sm-4">
                     <div class="logo pull-left">
                         <a href="index.jsp"><img src="images/home/logobaru2.png" alt="" /> 
+
                             <c:if test="${currentSessionUser.getIsAdmin()}">
 						Admin
 					</c:if>
