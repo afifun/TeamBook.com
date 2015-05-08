@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2015 at 06:34 AM
+-- Generation Time: May 08, 2015 at 07:26 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `buku` (
   `gambar` text NOT NULL,
   `harga` double NOT NULL,
   `stok` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `buku`
@@ -77,7 +77,13 @@ CREATE TABLE IF NOT EXISTS `buku` (
 INSERT INTO `buku` (`id`, `isbn`, `judul`, `author`, `penerbit`, `publish_date`, `kategori`, `deskripsi`, `gambar`, `harga`, `stok`) VALUES
 (1, '19872019281', 'Bahasa Indonesia', 'afifun', 'afifun', '2015-04-10', 'Non Fiksi', 'Buku ini merupakan buku bahasa indonesia', 'images/buku/bahasa.jpg', 48000, 0),
 (2, '89798712018281', 'Matematika', 'adas', 'asdasd', '2015-04-15', 'Non Fiksi', 'Buku ini merupakan buku matematika', 'images/buku/math.jpg', 75000, 0),
-(3, '12987192837198', 'Laskar Pelangi', 'afifun', 'afifun', '2015-04-18', 'Fiksi', 'Buku ini merupakan buku Novel Laskar Pelangi', 'images/buku/laskarPelangi.jpg', 90000, 0);
+(3, '12987192837198', 'Laskar Pelangi', 'afifun', 'afifun', '2015-04-18', 'Fiksi', 'Buku ini merupakan buku Novel Laskar Pelangi', 'images/buku/laskarPelangi.jpg', 90000, 0),
+(4, '12098274264627', 'Bahasa Inggris', 'Seseorang', 'Seseorang', '2015-05-08', 'Non Fiksi', 'Ini buku Bahasa Inggris\r\n\r\nSo let we learn English heheh', 'images/buku/bi.jpg', 40000, 0),
+(5, '121983173819731', 'Ilmu Pengetahuan Alam', 'Bukan Uli', 'Bukan Ulil', '2015-05-08', 'Non Fiksi', 'Belajar IPA Y', 'images/buku/ipa.jpg', 70000, 0),
+(6, '2131781784718', 'Ilmu Pengetahuan Sosial', 'Iam ', 'Iam', '2015-05-08', 'Non Fiksi', 'Ilmu Pengetahuan Sosial', 'images/buku/ips.jpg', 60000, 0),
+(7, '425262626262', 'Perahu Kertas', 'Dee Lestari', 'sesuatu', '2013-05-08', 'Fiksi', 'Perahu kertas menceritakan K dan K yang bersahabat', 'images/buku/perahu.jpg', 45000, 0),
+(8, '1873197319', 'Sebelas Patriot', 'Andrea Hirata', 'Hmm', '2014-05-08', 'Fiksi', 'Sebeldjakjdka', 'images/buku/sebelas.jpg', 45000, 0),
+(9, '17318731', 'Padang Bulan', 'Andrea Hirata', 'dada', '2013-08-10', 'Fiksi', 'Padang Bulan', 'images/buku/padangBulan.jpg', 50000, 0);
 
 -- --------------------------------------------------------
 
@@ -230,7 +236,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 -- AUTO_INCREMENT for table `buku`
 --
 ALTER TABLE `buku`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `buku_keranjang`
 --
