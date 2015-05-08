@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 01 Mei 2015 pada 03.08
--- Versi Server: 5.6.20
--- PHP Version: 5.5.15
+-- Generation Time: May 08, 2015 at 07:26 AM
+-- Server version: 5.6.21
+-- PHP Version: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `akun`
+-- Table structure for table `akun`
 --
 
 CREATE TABLE IF NOT EXISTS `akun` (
@@ -38,21 +38,22 @@ CREATE TABLE IF NOT EXISTS `akun` (
   `alamat_shipping` varchar(1000) NOT NULL,
   `alamat_default` varchar(1000) NOT NULL,
   `isAdmin` tinyint(1) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `akun`
+-- Dumping data for table `akun`
 --
 
 INSERT INTO `akun` (`id`, `nama`, `password`, `email`, `phone`, `provinsi`, `kota`, `kode_pos`, `alamat_shipping`, `alamat_default`, `isAdmin`) VALUES
 (2, 'admin', 'admin', 'admin@teambook.com', '0', '', '', '0', '0', '', 1),
 (3, 'ulil', '1234', 'ulil@ulil.com', '0', '', '', '0', '0', '', 0),
-(11, 'afifun', '1234', 'afifun@gmail.com', '123123123', 'jawa barat', 'depok', '16424', 'Fakultas Ilmu Komputer Universitas Indonesia', 'Fakultas Ilmu Komputer Universitas Indonesia', 0);
+(11, 'afifun', '1234', 'afifun@gmail.com', '123123123', 'jawa barat', 'depok', '16424', 'Fakultas Ilmu Komputer Universitas Indonesia', 'Fakultas Ilmu Komputer Universitas Indonesia', 0),
+(12, 'Sri Wuladari Yasher', '1', 'rilandyasher@gmail.com', '083181319459', 'Sumatera Barat', 'Dharmasraya', '1234567', 'Dharmasraya', 'Dharmasraya', 0);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `buku`
+-- Table structure for table `buku`
 --
 
 CREATE TABLE IF NOT EXISTS `buku` (
@@ -67,21 +68,27 @@ CREATE TABLE IF NOT EXISTS `buku` (
   `gambar` text NOT NULL,
   `harga` double NOT NULL,
   `stok` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `buku`
+-- Dumping data for table `buku`
 --
 
 INSERT INTO `buku` (`id`, `isbn`, `judul`, `author`, `penerbit`, `publish_date`, `kategori`, `deskripsi`, `gambar`, `harga`, `stok`) VALUES
-(1, '19872019281', 'Bahasa Indonesia', 'afifun', 'afifun', '2015-04-10', 'Non Fiksi', 'Buku ini merupakan buku bahasa indonesia', 'images/buku/19872019281.jpg', 48000, 0),
-(2, '89798712018281', 'Matematika', 'adas', 'asdasd', '2015-04-15', 'Non Fiksi', 'Buku ini merupakan buku matematika', 'images/buku/89798712018281.jpg', 75000, 0),
-(3, '12987192837198', 'Laskar Pelangi', 'afifun', 'afifun', '2015-04-18', 'Fiksi', 'Buku ini merupakan buku Novel Laskar Pelangi', 'images/buku/12987192837198.jpg', 90000, 0);
+(1, '19872019281', 'Bahasa Indonesia', 'afifun', 'afifun', '2015-04-10', 'Non Fiksi', 'Buku ini merupakan buku bahasa indonesia', 'images/buku/bahasa.jpg', 48000, 0),
+(2, '89798712018281', 'Matematika', 'adas', 'asdasd', '2015-04-15', 'Non Fiksi', 'Buku ini merupakan buku matematika', 'images/buku/math.jpg', 75000, 0),
+(3, '12987192837198', 'Laskar Pelangi', 'afifun', 'afifun', '2015-04-18', 'Fiksi', 'Buku ini merupakan buku Novel Laskar Pelangi', 'images/buku/laskarPelangi.jpg', 90000, 0),
+(4, '12098274264627', 'Bahasa Inggris', 'Seseorang', 'Seseorang', '2015-05-08', 'Non Fiksi', 'Ini buku Bahasa Inggris\r\n\r\nSo let we learn English heheh', 'images/buku/bi.jpg', 40000, 0),
+(5, '121983173819731', 'Ilmu Pengetahuan Alam', 'Bukan Uli', 'Bukan Ulil', '2015-05-08', 'Non Fiksi', 'Belajar IPA Y', 'images/buku/ipa.jpg', 70000, 0),
+(6, '2131781784718', 'Ilmu Pengetahuan Sosial', 'Iam ', 'Iam', '2015-05-08', 'Non Fiksi', 'Ilmu Pengetahuan Sosial', 'images/buku/ips.jpg', 60000, 0),
+(7, '425262626262', 'Perahu Kertas', 'Dee Lestari', 'sesuatu', '2013-05-08', 'Fiksi', 'Perahu kertas menceritakan K dan K yang bersahabat', 'images/buku/perahu.jpg', 45000, 0),
+(8, '1873197319', 'Sebelas Patriot', 'Andrea Hirata', 'Hmm', '2014-05-08', 'Fiksi', 'Sebeldjakjdka', 'images/buku/sebelas.jpg', 45000, 0),
+(9, '17318731', 'Padang Bulan', 'Andrea Hirata', 'dada', '2013-08-10', 'Fiksi', 'Padang Bulan', 'images/buku/padangBulan.jpg', 50000, 0);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `buku_keranjang`
+-- Table structure for table `buku_keranjang`
 --
 
 CREATE TABLE IF NOT EXISTS `buku_keranjang` (
@@ -89,21 +96,24 @@ CREATE TABLE IF NOT EXISTS `buku_keranjang` (
   `id_buku` int(11) NOT NULL,
   `id_keranjang` int(11) NOT NULL,
   `kuantitas` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `buku_keranjang`
+-- Dumping data for table `buku_keranjang`
 --
 
 INSERT INTO `buku_keranjang` (`id`, `id_buku`, `id_keranjang`, `kuantitas`) VALUES
 (21, 1, 1, 5),
 (28, 1, 5, 1),
-(29, 2, 5, 2);
+(29, 2, 5, 2),
+(30, 2, 3, 1),
+(31, 3, 3, 1),
+(33, 1, 6, 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `buku_order`
+-- Table structure for table `buku_order`
 --
 
 CREATE TABLE IF NOT EXISTS `buku_order` (
@@ -111,10 +121,10 @@ CREATE TABLE IF NOT EXISTS `buku_order` (
   `id_buku` int(11) NOT NULL,
   `id_order` int(11) NOT NULL,
   `kuantitas` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `buku_order`
+-- Dumping data for table `buku_order`
 --
 
 INSERT INTO `buku_order` (`id`, `id_buku`, `id_order`, `kuantitas`) VALUES
@@ -128,7 +138,7 @@ INSERT INTO `buku_order` (`id`, `id_buku`, `id_order`, `kuantitas`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `checkout`
+-- Table structure for table `checkout`
 --
 
 CREATE TABLE IF NOT EXISTS `checkout` (
@@ -143,33 +153,35 @@ CREATE TABLE IF NOT EXISTS `checkout` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `checkout`
+-- Dumping data for table `checkout`
 --
 
 INSERT INTO `checkout` (`id`, `id_akun`, `nama_kurir`, `jenis_paket`, `biaya_pengiriman`, `bank`, `status`, `tanggal`) VALUES
 (1164539104, 11, 'PenToLine', 'Paket Kilat', 25000, 'Danamon', 1, '2015-04-29'),
 (1165268723, 11, 'PenToLine', 'Paket Kilat', 25000, 'Danamon', 1, '2015-04-29'),
-(1174794674, 11, 'PenToLine', 'Paket Kilat', 15000, 'BNI', 1, '2015-04-29');
+(1174794674, 11, 'PenToLine', 'Paket Kilat', 15000, 'BNI', 1, '2015-04-29'),
+(12231018458, 12, 'PenToLine', 'Paket Kilat', 5000, 'Mandiri', 1, '2015-05-01');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `keranjang`
+-- Table structure for table `keranjang`
 --
 
 CREATE TABLE IF NOT EXISTS `keranjang` (
 `id_keranjang` int(11) NOT NULL,
   `id_akun` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `keranjang`
+-- Dumping data for table `keranjang`
 --
 
 INSERT INTO `keranjang` (`id_keranjang`, `id_akun`) VALUES
 (2, 2),
 (3, 3),
-(5, 11);
+(5, 11),
+(6, 12);
 
 --
 -- Indexes for dumped tables
@@ -219,17 +231,17 @@ ALTER TABLE `keranjang`
 -- AUTO_INCREMENT for table `akun`
 --
 ALTER TABLE `akun`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `buku`
 --
 ALTER TABLE `buku`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `buku_keranjang`
 --
 ALTER TABLE `buku_keranjang`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `buku_order`
 --
@@ -239,7 +251,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 -- AUTO_INCREMENT for table `keranjang`
 --
 ALTER TABLE `keranjang`
-MODIFY `id_keranjang` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `id_keranjang` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
