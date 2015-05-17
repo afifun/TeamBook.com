@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "BukuCheckout.findAll", query = "SELECT b FROM BukuCheckout b"),
     @NamedQuery(name = "BukuCheckout.findById", query = "SELECT b FROM BukuCheckout b WHERE b.id = :id"),
     @NamedQuery(name = "BukuCheckout.findByIdBuku", query = "SELECT b FROM BukuCheckout b WHERE b.idBuku = :idBuku"),
-    @NamedQuery(name = "BukuCheckout.findByIdOrder", query = "SELECT b FROM BukuCheckout b WHERE b.idOrder = :idOrder"),
+    @NamedQuery(name = "BukuCheckout.findByIdCheckout", query = "SELECT b FROM BukuCheckout b WHERE b.idCheckout = :idCheckout"),
     @NamedQuery(name = "BukuCheckout.findByKuantitas", query = "SELECT b FROM BukuCheckout b WHERE b.kuantitas = :kuantitas")})
 public class BukuCheckout implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -41,8 +41,8 @@ public class BukuCheckout implements Serializable {
     @Column(name = "id_buku")
     private int idBuku;
     @Basic(optional = false)
-    @Column(name = "id_order")
-    private int idOrder;
+    @Column(name = "id_checkout")
+    private long idCheckout;
     @Basic(optional = false)
     @Column(name = "kuantitas")
     private int kuantitas;
@@ -54,10 +54,10 @@ public class BukuCheckout implements Serializable {
         this.id = id;
     }
 
-    public BukuCheckout(Integer id, int idBuku, int idOrder, int kuantitas) {
+    public BukuCheckout(Integer id, int idBuku, long idCheckout, int kuantitas) {
         this.id = id;
         this.idBuku = idBuku;
-        this.idOrder = idOrder;
+        this.idCheckout = idCheckout;
         this.kuantitas = kuantitas;
     }
 
@@ -77,12 +77,12 @@ public class BukuCheckout implements Serializable {
         this.idBuku = idBuku;
     }
 
-    public int getIdOrder() {
-        return idOrder;
+    public long getIdCheckout() {
+        return idCheckout;
     }
 
-    public void setIdOrder(int idOrder) {
-        this.idOrder = idOrder;
+    public void setIdCheckout(long idCheckout) {
+        this.idCheckout = idCheckout;
     }
 
     public int getKuantitas() {

@@ -255,11 +255,15 @@
 							<div class="product-image-wrapper">
 								<div class="single-products">
 										<div class="productinfo text-center">
-											<img  style="width:150px;height: 200px" src="${item.getGambar()}" alt="" />
+                                                                                    <a href="DetilBuku?id=${item.getId()}"><img  style="width:150px;height: 200px" src="${item.getGambar()}" alt="" /></a>
 											<h2>Rp. ${item.getHarga()}0</h2>
                                                                                         <a href="DetilBuku?id=${item.getId()}"><p>${item.getJudul()}</p></a>
-											<a href="AddToCart?id=${item.getId()}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
+											<c:choose>
+                                                                                    <c:when test="${currentSessionUser != null}">
+                                                                                        <a href="AddToCart?id=${item.getId()}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                                                    </c:when>
+                                                                                </c:choose>
+                                                                                </div>
 <!--										<div class="product-overlay">
 											<div class="overlay-content">
 												<h2>${item.getHarga()}</h2>

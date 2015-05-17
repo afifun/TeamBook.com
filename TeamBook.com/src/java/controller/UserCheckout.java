@@ -6,6 +6,7 @@
 package controller;
 
 import dao.BukuCheckoutDAO;
+import dao.BukuKeranjangDAO;
 import dao.CheckoutDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -82,6 +83,7 @@ public class UserCheckout extends HttpServlet {
         
         CheckoutDAO dao = new CheckoutDAO();
         BukuCheckoutDAO daoBC = new BukuCheckoutDAO();
+        BukuKeranjangDAO daoBK = new BukuKeranjangDAO();
         
         Checkout newCk = new Checkout();
         newCk.setId(Long.parseLong(token));
@@ -101,10 +103,12 @@ public class UserCheckout extends HttpServlet {
         for(BukuKeranjang item : bukuList){
             BukuCheckout newBC = new BukuCheckout();
             newBC.setIdBuku(item.getIdBuku());
-            newBC.setIdOrder(Integer.parseInt(token));
+            newBC.setIdCheckout(Long.parseLong(token));
             newBC.setKuantitas(item.getKuantitas());
             daoBC.add(newBC);
+            daoBK.delete("" + item.getId());
         }
+        
         
         request.getRequestDispatcher("success-checkout.jsp").forward(request, response);
     }

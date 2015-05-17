@@ -38,11 +38,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Buku.findByPublishDate", query = "SELECT b FROM Buku b WHERE b.publishDate = :publishDate"),
     @NamedQuery(name = "Buku.findByKategori", query = "SELECT b FROM Buku b WHERE b.kategori = :kategori"),
     @NamedQuery(name = "Buku.findByDeskripsi", query = "SELECT b FROM Buku b WHERE b.deskripsi = :deskripsi"),
-    @NamedQuery(name = "Buku.findByHarga", query = "SELECT b FROM Buku b WHERE b.harga = :harga")})
+    @NamedQuery(name = "Buku.findByHarga", query = "SELECT b FROM Buku b WHERE b.harga = :harga"),
+    @NamedQuery(name = "Buku.findByStok", query = "SELECT b FROM Buku b WHERE b.stok = :stok"),
+    @NamedQuery(name = "Buku.findByBerat", query = "SELECT b FROM Buku b WHERE b.berat = :berat")})
 public class Buku implements Serializable {
-    @Basic(optional = false)
-    @Column(name = "stok")
-    private int stok;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -75,6 +74,12 @@ public class Buku implements Serializable {
     @Basic(optional = false)
     @Column(name = "harga")
     private double harga;
+    @Basic(optional = false)
+    @Column(name = "stok")
+    private int stok;
+    @Basic(optional = false)
+    @Column(name = "berat")
+    private double berat;
 
     public Buku() {
     }
@@ -83,7 +88,7 @@ public class Buku implements Serializable {
         this.id = id;
     }
 
-    public Buku(Integer id, String isbn, String author, String penerbit, Date publishDate, String gambar, double harga) {
+    public Buku(Integer id, String isbn, String author, String penerbit, Date publishDate, String gambar, double harga, int stok, double berat) {
         this.id = id;
         this.isbn = isbn;
         this.author = author;
@@ -91,6 +96,8 @@ public class Buku implements Serializable {
         this.publishDate = publishDate;
         this.gambar = gambar;
         this.harga = harga;
+        this.stok = stok;
+        this.berat = berat;
     }
 
     public Integer getId() {
@@ -173,6 +180,22 @@ public class Buku implements Serializable {
         this.harga = harga;
     }
 
+    public int getStok() {
+        return stok;
+    }
+
+    public void setStok(int stok) {
+        this.stok = stok;
+    }
+
+    public double getBerat() {
+        return berat;
+    }
+
+    public void setBerat(double berat) {
+        this.berat = berat;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -196,14 +219,6 @@ public class Buku implements Serializable {
     @Override
     public String toString() {
         return "model.Buku[ id=" + id + " ]";
-    }
-
-    public int getStok() {
-        return stok;
-    }
-
-    public void setStok(int stok) {
-        this.stok = stok;
     }
     
 }

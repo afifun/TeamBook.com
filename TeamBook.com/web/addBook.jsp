@@ -12,7 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Checkout | Teambook</title>
+        <title>Tambah Buku | Teambook</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/font-awesome.min.css" rel="stylesheet">
         <link href="css/prettyPhoto.css" rel="stylesheet">
@@ -83,6 +83,12 @@
                                 
                                 <div class="form-group col-md-12">
                                     <textarea name="deskripsi" id="message" required="required" class="form-control" rows="8" placeholder="Tulis Deskripsi Buku Disini!"></textarea>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <input type="text" name="stok" class="form-control" required="required" placeholder="stok"> 
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <input type="text" name="berat" class="form-control" required="required" placeholder="berat"> 
                                 </div>
                                 <div class="col-lg-6">
                                     <input type="text" name="harga" class="form-control" required="required" placeholder="harga"> 

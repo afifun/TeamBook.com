@@ -60,8 +60,8 @@
                                 </div>
                                 
                                 <div class="form-group col-lg-6">
-                                    <input type="date" name="tanggal_terbit" value=${bukuobj.getPublishDate()} class="form-control"  required="required" placeholder="Tanggal Terbit">
-                                
+                                    <input type="date" name="tanggal_terbit" value="${bukuobj.getPublishDate()}" class="form-control"  required="required" placeholder="Tanggal Terbit">
+            
                                 </div>
     
                                 <div class="col-lg-6">
@@ -91,7 +91,14 @@
                                 <div class="form-group col-md-12">
                                     <textarea name="deskripsi" id="message" required="required" class="form-control" rows="8" placeholder="Tulis Deskripsi Buku Disini!">${bukuobj.getDeskripsi()}</textarea>
                                 </div>
-
+                                
+                                <div class="form-group col-lg-6">
+                                    <input type="text" name="stok" value="${bukuobj.getStok()}" class="form-control" required="required" placeholder="stok"> 
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <input type="text" name="berat" value="${bukuobj.getBerat()}" class="form-control" required="required" placeholder="berat"> 
+                                </div>
+                                
                                 <div class="col-lg-6">
                                     <input type="text" name="harga" value="${bukuobj.getHarga()}" class="form-control" required="required" placeholder="harga"> 
                                 </div>

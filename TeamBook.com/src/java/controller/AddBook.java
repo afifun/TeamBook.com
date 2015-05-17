@@ -110,6 +110,8 @@ public class AddBook extends HttpServlet {
         String harga = request.getParameter("harga");
         String pengarang = request.getParameter("pengarang");
         String penerbit = request.getParameter("penerbit");
+        String stok = request.getParameter("stok");
+        String berat = request.getParameter("berat");
         
         InputStream filecontent = null;
         
@@ -133,6 +135,8 @@ public class AddBook extends HttpServlet {
         bk.setIsbn(isbn);
         bk.setPenerbit(penerbit);
         bk.setAuthor(pengarang);
+        bk.setBerat(Double.parseDouble(berat));
+        bk.setStok(Integer.parseInt(stok));
         bk.setGambar("images/buku/" + isbn + ".jpg");
         
         if(dao.add(bk,filecontent)){

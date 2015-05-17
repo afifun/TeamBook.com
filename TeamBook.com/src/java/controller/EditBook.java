@@ -112,6 +112,9 @@ public class EditBook extends HttpServlet {
         String harga = request.getParameter("harga");
         String pengarang = request.getParameter("pengarang");
         String penerbit = request.getParameter("penerbit");
+        String stok = request.getParameter("stok");
+        String berat = request.getParameter("berat");
+        
         InputStream filecontent = null;
         
         System.out.println(judul);
@@ -136,11 +139,13 @@ public class EditBook extends HttpServlet {
         bk.setIsbn(isbn);
         bk.setPenerbit(penerbit);
         bk.setAuthor(pengarang);
+        bk.setBerat(Double.parseDouble(berat));
+        bk.setStok(Integer.parseInt(stok));
         bk.setGambar("images/buku/" + isbn + ".jpg");
         
         if(dao.update(bk, filecontent)){
             request.setAttribute("buku", true);
-            request.setAttribute(" ", "Sukses! Buku berhasil diubah");
+            request.setAttribute("notifikasi", "Sukses! Buku berhasil diubah");
         }
         else {
             request.setAttribute("buku", true);

@@ -53,9 +53,10 @@
 							<div class="product-image-wrapper">
 								<div class="single-products">
 									<div class="productinfo text-center">
-										<img style="width:150px;height: 200px" src="${item.getGambar()}" alt="" />
-										<h2>${item.getHarga()}</h2>
-										<p>${item.getJudul()}</p>
+										<a href="DetilBuku?id=${item.getId()}"><img  style="width:150px;height: 200px" src="${item.getGambar()}" alt="" /></a>
+											<h2>Rp. ${item.getHarga()}0</h2>
+                                                                                        <a href="DetilBuku?id=${item.getId()}"><p>${item.getJudul()}</p></a>
+											
 										<c:choose>
                                                                                     <c:when test="${currentSessionUser != null}">
                                                                                         <a href="AddToCart?id=${item.getId()}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -71,13 +72,15 @@
                                                 </c:forEach>
 						
 						
-						<ul class="pagination">
+						
+					</div><!--features_items-->
+                                        
+                                        <ul class="pagination">
 							<li class="active"><a href="">1</a></li>
 							<li><a href="">2</a></li>
 							<li><a href="">3</a></li>
 							<li><a href="">&raquo;</a></li>
 						</ul>
-					</div><!--features_items-->
 				</div>
 			</div>
 		</div>
