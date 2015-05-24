@@ -27,7 +27,7 @@ public class CheckoutDAO {
     }
 
     public Checkout getCheckout(String id) {
-        Checkout co = (Checkout) manager.createNamedQuery("Checkout.findById").setParameter("id", Integer.parseInt(id)).getSingleResult();
+        Checkout co = (Checkout) manager.createNamedQuery("Checkout.findById").setParameter("id", Long.parseLong(id)).getSingleResult();
         if (co == null) {
             throw new EntityNotFoundException("Tidak dapat menemukan checkout dengan id " + id);
         }

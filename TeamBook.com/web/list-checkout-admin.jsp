@@ -12,7 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>List Checkout | TeamBook</title>
+        <title>Daftar Pesanan | Teambook</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/font-awesome.min.css" rel="stylesheet">
         <link href="css/prettyPhoto.css" rel="stylesheet">
@@ -66,37 +66,47 @@
                             <table id="table_id" class="display" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                        <th>No. Pesanan</th>
-                                        <th>Tanggal Pemesanan</th>
+                                        <th>ID</th>
+                                        <th>Tanggal</th>
+                                        <th>ID Akun</th>
+                                        <th>Kurir</th>
+                                        <th>Jenis Paket</th>
+                                        <th>Biaya Pengiriman</th>
+                                        <th>Bank</th>
                                         <th>Status</th>
-                                        <th></th>
                                     </tr>
                                 </thead>
 
+                                <tfoot>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Tanggal</th>
+                                        <th>ID Akun</th>
+                                        <th>Kurir</th>
+                                        <th>Jenis Paket</th>
+                                        <th>Biaya Pengiriman</th>
+                                        <th>Bank</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </tfoot>
+
                                 <tbody>
-                                    <c:forEach var="item" items="${list}">
+                                    <c:forEach var="item" items="${listCheckout}">
                                         <tr>
                                             <td>${item.getId()}</td>
                                             <td>${item.getTanggal()}</td>
+                                            <td>${item.getIdAkun()}</td>
+                                            <td>${item.getNamaKurir()}</td>
+                                            <td>${item.getJenisPaket()}</td>
+                                            <td>${item.getBiayaPengiriman()}</td>
+                                            <td>${item.getBank()}</td>
                                             <td>
                                                 <c:choose>
                                                     <c:when test="${item.getStatus() == 1}">
                                                         Belum Dibayar
                                                     </c:when>
-                                                    <c:when test="${item.getStatus() == 2}">
-                                                        Telah Dibayar
-                                                    </c:when>
                                                     <c:otherwise>
                                                         Di Tolak
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </td>
-                                            <td>
-                                                <c:choose>
-                                                    <c:when test="${item.getStatus() == 1}">
-                                                        <a href="Konfirmasi?IDOrder=${item.getId()}"><button class="btn btn-primary">Konfirmasi</button></a>
-                                                    </c:when>
-                                                    <c:otherwise>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </td>

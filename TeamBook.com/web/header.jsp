@@ -36,7 +36,7 @@
 
                             <c:if test="${currentSessionUser.getIsAdmin()}">
 						Admin
-					</c:if>
+			    </c:if>
                             </a>
                     </div>
                     <!--                    <div class="btn-group pull-right">
@@ -75,7 +75,16 @@
 
                             <c:choose>
                                 <c:when test="${currentSessionUser != null}">
-                                    <li><a href="ListCheckout?id=${currentSessionUser.getId()}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+                                    <li>
+                                        <c:choose>
+                                <c:when test="${currentSessionUser.getIsAdmin()}">
+                                    <a href="ListCheckoutAdmin"><i class="fa fa-crosshairs"></i>Daftar Pesanan</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a href="ListCheckout?id=${currentSessionUser.getId()}"><i class="fa fa-crosshairs"></i> Checkout</a>
+                                </c:otherwise>
+                            </c:choose>
+                                            </li>
                                     <li><a href="Cart"><i class="fa fa-shopping-cart"></i> Cart${item_sum}</a></li>
                                 </c:when>
                             </c:choose>

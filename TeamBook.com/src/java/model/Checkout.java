@@ -6,6 +6,7 @@
 package model;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -81,7 +82,14 @@ public class Checkout implements Serializable {
         this.status = status;
         this.tanggal = tanggal;
     }
-
+    
+    public String getTanggalDMY() {
+		String tgl = "";
+		SimpleDateFormat sdfr = new SimpleDateFormat("dd-MMM-yyyy");
+		tgl = sdfr.format(this.tanggal);		
+		return tgl;
+	}
+    
     public Long getId() {
         return id;
     }

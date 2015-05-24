@@ -5,30 +5,22 @@
  */
 package controller;
 
-import dao.BukuCheckoutDAO;
-import dao.BukuKeranjangDAO;
 import dao.CheckoutDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.util.Calendar;
 import java.util.List;
-import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Akun;
-import model.BukuCheckout;
-import model.BukuKeranjang;
 import model.Checkout;
-import model.Keranjang;
 
 /**
  *
  * @author moh.afifun
  */
-public class UserCheckout extends HttpServlet {
+public class ListCheckoutAdmin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,10 +39,10 @@ public class UserCheckout extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UserCheckout</title>");            
+            out.println("<title>Servlet ListCheckoutAdmin</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet UserCheckout at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ListCheckoutAdmin at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -69,47 +61,19 @@ public class UserCheckout extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        Akun temp = (Akun) request.getSession().getAttribute("currentSessionUser");
-        Keranjang keranjangTmp = (Keranjang) request.getSession().getAttribute("currentSessionCart");
-        String namaKurir = (String) request.getSession().getAttribute("nama_kurir");
-        String jenisPaket = (String) request.getSession().getAttribute("jenis_paket");
-        String namaBank = (String) request.getSession().getAttribute("nama_bank");
-        double biayaPaketTotal = (double) request.getSession().getAttribute("biayapaket_total");
-        
-        Calendar cal = Calendar.getInstance();
-        java.util.Date date = cal.getTime();
-      
-        String token = "" + temp.getId()  + (long) cal.getTimeInMillis();
-        System.out.println("token : " + token);
+          Akun temp = (Akun) request.getSession().getAttribute("currentSessionUser");
+		if(temp == null || !temp.getIsAdmin()){
+			String site = "Login" ;
+			response.setStatus(response.SC_MOVED_TEMPORARILY);
+			response.setHeader("Location", site);
+		}
         CheckoutDAO dao = new CheckoutDAO();
-        BukuCheckoutDAO daoBC = new BukuCheckoutDAO();
-        BukuKeranjangDAO daoBK = new BukuKeranjangDAO();
-        Checkout newCk = new Checkout();
-        newCk.setId(Long.parseLong(token));
-        newCk.setBank(namaBank);
-        newCk.setIdAkun(temp.getId());
-        newCk.setStatus(1);
-        newCk.setBiayaPengiriman(biayaPaketTotal);
-        newCk.setNamaKurir(namaKurir);
-        newCk.setJenisPaket(jenisPaket);
-        newCk.setTanggal(date);
         
-        dao.add(newCk);
-        
-        
-        List<BukuKeranjang> bukuList = keranjangTmp.getItemsKeranjang();
-        
-        for(BukuKeranjang item : bukuList){
-            BukuCheckout newBC = new BukuCheckout();
-            newBC.setIdBuku(item.getIdBuku());
-            newBC.setIdCheckout(Long.parseLong(token));
-            newBC.setKuantitas(item.getKuantitas());
-            daoBC.add(newBC);
-            daoBK.delete("" + item.getId());
-        }
-        
-        
-        request.getRequestDispatcher("success-checkout.jsp").forward(request, response);
+        List<Checkout> list = dao.getListCheckout();
+        request.setAttribute("checkout", true);
+        request.setAttribute("listCheckout", list);
+        request.getRequestDispatcher("list-checkout-admin.jsp").forward(request,
+						response);
     }
 
     /**
@@ -123,7 +87,8 @@ public class UserCheckout extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("list-checkout-admin.jsp").forward(request,
+						response);
     }
 
     /**

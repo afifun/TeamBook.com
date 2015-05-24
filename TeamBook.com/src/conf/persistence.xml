@@ -10,6 +10,7 @@
     <class>model.Checkout</class>
     <class>model.Buku</class>
     <class>model.BukuCheckout</class>
+    <class>model.BuktiTransfer</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/teambook_db?zeroDateTimeBehavior=convertToNull"/>

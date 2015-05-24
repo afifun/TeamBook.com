@@ -45,7 +45,7 @@
 		<div class="content-404">
 			<h1><b>Sukses!</b></h1>
                         <p> Pesanan akan kamu telah tersimpan</p>
-			<h2><a href="ListCheckout">Klik! untuk melihat detil pesanan</a></h2>
+			<h2><a href="ListCheckout?id=${currentSessionUser.getId()}">Klik! untuk melihat detil pesanan</a></h2>
                         
 		</div>
                         <br>

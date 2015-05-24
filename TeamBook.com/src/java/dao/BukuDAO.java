@@ -65,7 +65,7 @@ public class BukuDAO {
             manager.persist(newCo);
             manager.getTransaction().commit();
 
-            OutputStream outputStream = new FileOutputStream(new File("C:/Users/moh.afifun/Documents/GitHub/TeamBook.com/TeamBook.com/web/images/" + newCo.getIsbn() + ".jpg"));
+            OutputStream outputStream = new FileOutputStream(new File("C:/Users/moh.afifun/Documents/GitHub/TeamBook.com/TeamBook.com/web/images/buku/" + newCo.getIsbn() + ".jpg"));
 
             int read = 0;
             byte[] bytes = new byte[2048];

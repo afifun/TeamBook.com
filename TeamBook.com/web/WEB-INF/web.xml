@@ -76,6 +76,14 @@
         <servlet-name>ListCheckout</servlet-name>
         <servlet-class>controller.ListCheckout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListCheckoutAdmin</servlet-name>
+        <servlet-class>controller.ListCheckoutAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Konfirmasi</servlet-name>
+        <servlet-class>controller.Konfirmasi</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -151,6 +159,14 @@
     <servlet-mapping>
         <servlet-name>ListCheckout</servlet-name>
         <url-pattern>/ListCheckout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListCheckoutAdmin</servlet-name>
+        <url-pattern>/ListCheckoutAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Konfirmasi</servlet-name>
+        <url-pattern>/Konfirmasi</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
