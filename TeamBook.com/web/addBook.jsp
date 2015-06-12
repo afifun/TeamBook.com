@@ -47,8 +47,10 @@
                         <div class="contact-form">
                             <h2 class="title text-center">Tambah Buku</h2>
                             
-                            <div class="status alert alert-success" 
-                                 <c:if test="${notifikasi == null}">style="display: none"</c:if> >
+                            <div class="status alert 
+                                  <c:if test="${notifikasi1 != null}"> alert-success"</c:if>
+                                  <c:if test="${notifikasi2 != null}"> alert-danger"</c:if>
+                                  <c:if test="${notifikasi1 == null || notifikasi2 == null}">style="display: none"</c:if> >
                             ${notifikasi}
                             </div>
                                  

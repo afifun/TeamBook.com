@@ -92,15 +92,20 @@ public class Login extends HttpServlet {
         try {
             Akun acc = dao.login(email, password);
             if(acc != null){
-                
-                System.out.println("id akun :" + acc.getId());
-                Keranjang kr = daoK.getKeranjangByAkun("" + acc.getId());
                 HttpSession session = request.getSession(true);
                 session.setAttribute("currentSessionUser", acc);
-                session.setAttribute("currentSessionCart", kr);  
-                session.setAttribute("item_sum", "(" + kr.size() + ")");
-                response.sendRedirect("Index");
-                
+                if(acc.getIsAdmin()){
+                    String site = "ListCheckoutAdmin" ;
+                    response.setStatus(response.SC_MOVED_TEMPORARILY);
+                    response.setHeader("Location", site);
+                }
+                else{
+                    System.out.println("id akun :" + acc.getId());
+                    Keranjang kr = daoK.getKeranjangByAkun("" + acc.getId());
+                    session.setAttribute("currentSessionCart", kr);  
+                    session.setAttribute("item_sum", "(" + kr.size() + ")");
+                    response.sendRedirect("Index");
+                }
             }
             else {
                 

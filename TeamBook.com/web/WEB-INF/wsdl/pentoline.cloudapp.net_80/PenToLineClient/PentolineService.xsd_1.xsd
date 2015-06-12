@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.2-hudson-740-. --><xs:schema xmlns:tns="http://service/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://service/">
+
+<xs:element name="cekStatus" type="tns:cekStatus" />
+
+<xs:element name="cekStatusResponse" type="tns:cekStatusResponse" />
+
+<xs:element name="hello" type="tns:hello" />
+
+<xs:element name="helloResponse" type="tns:helloResponse" />
+
+<xs:element name="kirim" type="tns:kirim" />
+
+<xs:element name="kirimResponse" type="tns:kirimResponse" />
+
+<xs:complexType name="kirim">
+<xs:sequence>
+<xs:element name="waktu" type="xs:string" minOccurs="0" />
+<xs:element name="namaBarang" type="xs:string" minOccurs="0" />
+<xs:element name="paket" type="xs:string" minOccurs="0" />
+<xs:element name="link" type="xs:string" minOccurs="0" />
+<xs:element name="alamattujuan" type="xs:string" minOccurs="0" />
+<xs:element name="alamatasal" type="xs:string" minOccurs="0" />
+<xs:element name="kotaasal" type="xs:string" minOccurs="0" />
+<xs:element name="kotatujuan" type="xs:string" minOccurs="0" />
+<xs:element name="berat" type="xs:string" minOccurs="0" />
+<xs:element name="keterangan" type="xs:string" minOccurs="0" />
+<xs:element name="teleponpenerima" type="xs:string" minOccurs="0" />
+<xs:element name="teleponpengirim" type="xs:string" minOccurs="0" />
+<xs:element name="namapenerima" type="xs:string" minOccurs="0" />
+<xs:element name="namapengirim" type="xs:string" minOccurs="0" />
+<xs:element name="username" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="kirimResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="hello">
+<xs:sequence>
+<xs:element name="name" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="helloResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cekStatus">
+<xs:sequence>
+<xs:element name="id" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cekStatusResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

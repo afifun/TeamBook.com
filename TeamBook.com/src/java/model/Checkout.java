@@ -6,7 +6,6 @@
 package model;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -31,8 +30,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Checkout.findById", query = "SELECT c FROM Checkout c WHERE c.id = :id"),
     @NamedQuery(name = "Checkout.findByIdAkun", query = "SELECT c FROM Checkout c WHERE c.idAkun = :idAkun"),
     @NamedQuery(name = "Checkout.findByNamaKurir", query = "SELECT c FROM Checkout c WHERE c.namaKurir = :namaKurir"),
+    @NamedQuery(name = "Checkout.findByIdOrderKurir", query = "SELECT c FROM Checkout c WHERE c.idOrderKurir = :idOrderKurir"),
     @NamedQuery(name = "Checkout.findByJenisPaket", query = "SELECT c FROM Checkout c WHERE c.jenisPaket = :jenisPaket"),
+    @NamedQuery(name = "Checkout.findByBeratPaket", query = "SELECT c FROM Checkout c WHERE c.beratPaket = :beratPaket"),
+    @NamedQuery(name = "Checkout.findByWaktuPenerimaan", query = "SELECT c FROM Checkout c WHERE c.waktuPenerimaan = :waktuPenerimaan"),
     @NamedQuery(name = "Checkout.findByBiayaPengiriman", query = "SELECT c FROM Checkout c WHERE c.biayaPengiriman = :biayaPengiriman"),
+    @NamedQuery(name = "Checkout.findByBiayaItem", query = "SELECT c FROM Checkout c WHERE c.biayaItem = :biayaItem"),
     @NamedQuery(name = "Checkout.findByBank", query = "SELECT c FROM Checkout c WHERE c.bank = :bank"),
     @NamedQuery(name = "Checkout.findByStatus", query = "SELECT c FROM Checkout c WHERE c.status = :status"),
     @NamedQuery(name = "Checkout.findByTanggal", query = "SELECT c FROM Checkout c WHERE c.tanggal = :tanggal")})
@@ -45,15 +48,25 @@ public class Checkout implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_akun")
     private int idAkun;
-    @Basic(optional = false)
     @Column(name = "nama_kurir")
     private String namaKurir;
+    @Column(name = "id_order_kurir")
+    private String idOrderKurir;
     @Basic(optional = false)
     @Column(name = "jenis_paket")
     private String jenisPaket;
     @Basic(optional = false)
+    @Column(name = "berat_paket")
+    private int beratPaket;
+    @Basic(optional = false)
+    @Column(name = "waktu_penerimaan")
+    private String waktuPenerimaan;
+    @Basic(optional = false)
     @Column(name = "biaya_pengiriman")
     private double biayaPengiriman;
+    @Basic(optional = false)
+    @Column(name = "biaya_item")
+    private double biayaItem;
     @Basic(optional = false)
     @Column(name = "bank")
     private String bank;
@@ -72,24 +85,19 @@ public class Checkout implements Serializable {
         this.id = id;
     }
 
-    public Checkout(Long id, int idAkun, String namaKurir, String jenisPaket, double biayaPengiriman, String bank, int status, Date tanggal) {
+    public Checkout(Long id, int idAkun, String jenisPaket, int beratPaket, String waktuPenerimaan, double biayaPengiriman, double biayaItem, String bank, int status, Date tanggal) {
         this.id = id;
         this.idAkun = idAkun;
-        this.namaKurir = namaKurir;
         this.jenisPaket = jenisPaket;
+        this.beratPaket = beratPaket;
+        this.waktuPenerimaan = waktuPenerimaan;
         this.biayaPengiriman = biayaPengiriman;
+        this.biayaItem = biayaItem;
         this.bank = bank;
         this.status = status;
         this.tanggal = tanggal;
     }
-    
-    public String getTanggalDMY() {
-		String tgl = "";
-		SimpleDateFormat sdfr = new SimpleDateFormat("dd-MMM-yyyy");
-		tgl = sdfr.format(this.tanggal);		
-		return tgl;
-	}
-    
+
     public Long getId() {
         return id;
     }
@@ -114,6 +122,14 @@ public class Checkout implements Serializable {
         this.namaKurir = namaKurir;
     }
 
+    public String getIdOrderKurir() {
+        return idOrderKurir;
+    }
+
+    public void setIdOrderKurir(String idOrderKurir) {
+        this.idOrderKurir = idOrderKurir;
+    }
+
     public String getJenisPaket() {
         return jenisPaket;
     }
@@ -122,12 +138,36 @@ public class Checkout implements Serializable {
         this.jenisPaket = jenisPaket;
     }
 
+    public int getBeratPaket() {
+        return beratPaket;
+    }
+
+    public void setBeratPaket(int beratPaket) {
+        this.beratPaket = beratPaket;
+    }
+
+    public String getWaktuPenerimaan() {
+        return waktuPenerimaan;
+    }
+
+    public void setWaktuPenerimaan(String waktuPenerimaan) {
+        this.waktuPenerimaan = waktuPenerimaan;
+    }
+
     public double getBiayaPengiriman() {
         return biayaPengiriman;
     }
 
     public void setBiayaPengiriman(double biayaPengiriman) {
         this.biayaPengiriman = biayaPengiriman;
+    }
+
+    public double getBiayaItem() {
+        return biayaItem;
+    }
+
+    public void setBiayaItem(double biayaItem) {
+        this.biayaItem = biayaItem;
     }
 
     public String getBank() {

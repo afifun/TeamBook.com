@@ -3,14 +3,14 @@
   <persistence-unit name="TeamBook.comPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>model.Order</class>
-    <class>model.Akun</class>
     <class>model.BukuOrder</class>
     <class>model.BukuKeranjang</class>
     <class>model.Keranjang</class>
-    <class>model.Checkout</class>
     <class>model.Buku</class>
-    <class>model.BukuCheckout</class>
     <class>model.BuktiTransfer</class>
+    <class>model.Akun</class>
+    <class>model.BukuCheckout</class>
+    <class>model.Checkout</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/teambook_db?zeroDateTimeBehavior=convertToNull"/>

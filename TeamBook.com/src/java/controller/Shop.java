@@ -8,10 +8,12 @@ package controller;
 import dao.BukuDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Buku;
 
 /**
  *
@@ -59,7 +61,14 @@ public class Shop extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
         BukuDAO dao = new BukuDAO();
-        request.setAttribute("list_buku", dao.getListBuku());
+        int page = Integer.parseInt(request.getParameter("page"));
+        int indexMulai = page*6;
+        int indexAkhir = indexMulai + 6;
+        List<Buku> listBk = dao.getListBuku(indexMulai, indexAkhir);
+        if(listBk != null){
+            request.setAttribute("list_buku", listBk);
+        }
+        request.setAttribute("page", page);
         request.getRequestDispatcher("shop.jsp").forward(request, response);
     }
 

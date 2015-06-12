@@ -54,22 +54,62 @@
 				<div class="row">	
 					<div class="col-lg-12">
 						<div class="shopper-info">
-							<form>
+							<form action="CheckoutStep2" method="POST">
                                                             <table>
                                                                 <tbody>
                                                                     <tr>
                                                                         <td>Perusahaan Kurir</td>
-                                                                        <td>: <strong>PenToLine</strong></td>
+                                                                        <td>:</td>
+                                                                        <td><strong>PenToLine</strong></td>
+                                                                        <td></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Jenis Servis</td>
-                                                                        <td>: <strong>Paket Kilat</strong></td>
+                                                                        <td>:</td>
+                                                                        <td> <select class="form-control" id="sel3" name="paket">
+                                                                                <option value="Normal">Normal</option>
+                                                                                <option value="Jumbo">Jumbo</option>
+                                                                                <option value="Express">Express</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Waktu Penerimaan Paket</td>
+                                                                        <td>:</td>
+                                                                        <td> <select class="form-control" id="sel3" name="waktu">
+                                                                                <option value="00:00">00:00</option>
+                                                                                <option value="01:00">01:00</option>
+                                                                                <option value="02:00">02:00</option>
+                                                                                <option value="03:00">03:00</option>
+                                                                                <option value="04:00">04:00</option>
+                                                                                <option value="05:00">05:00</option>
+                                                                                <option value="06:00">06:00</option>
+                                                                                <option value="07:00">07:00</option>
+                                                                                <option value="08:00">08:00</option>
+                                                                                <option value="09:00">09:00</option>
+                                                                                <option value="10:00" selected>10:00</option>
+                                                                                <option value="11:00">11:00</option>
+                                                                                <option value="12:00">12:00</option>
+                                                                                <option value="13:00">13:00</option>
+                                                                                <option value="14:00">14:00</option>
+                                                                                <option value="15:00">15:00</option>
+                                                                                <option value="16:00">16:00</option>
+                                                                                <option value="17:00">17:00</option>
+                                                                                <option value="18:00">18:00</option>
+                                                                                <option value="19:00">19:00</option>
+                                                                                <option value="20:00">20:00</option>
+                                                                                <option value="21:00">21:00</option>
+                                                                                <option value="23:00">23:00</option>
+                                                                                <option value="24:00">24:00</option>
+                                                                            </select> 
+                                                                        </td>
+                                                                        <td>&nbsp;&nbsp; <b>WIB<b></td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
-								
-							</form>
-                                                    <a class="btn btn-primary pull-right" href="CheckoutStep3">Continue >></a>
+								<input style="width: 17%;" class="btn btn-primary pull-right" type="submit" value="Continue >>">
+							</form> 
 						</div>
 					</div>				
 				</div>
@@ -113,184 +153,8 @@
 			</div>
                         </div>
                                 </div>
-                        
-			<div class="review-payment">
-				<h2>Review & Payment</h2>
-			</div>
-
-			<div class="payment-options">
-					<span>
-						<label><input type="checkbox"> Direct Bank Transfer</label>
-					</span>
-					<span>
-						<label><input type="checkbox"> Check Payment</label>
-					</span>
-					<span>
-						<label><input type="checkbox"> Paypal</label>
-					</span>
-				</div>
 		</div>
 	</section> <!--/#cart_items-->
-
-	
-
-	<!--<footer id="footer">
-		<div class="footer-top">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-2">
-						<div class="companyinfo">
-							<h2><span>e</span>-shopper</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
-						</div>
-					</div>
-					<div class="col-sm-7">
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="images/home/iframe1.png" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-						
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="images/home/iframe2.png" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-						
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="images/home/iframe3.png" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-						
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="images/home/iframe4.png" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="address">
-							<img src="images/home/map.png" alt="" />
-							<p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<div class="footer-widget">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>Service</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="">Online Help</a></li>
-								<li><a href="">Contact Us</a></li>
-								<li><a href="">Order Status</a></li>
-								<li><a href="">Change Location</a></li>
-								<li><a href="">FAQ’s</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>Quock Shop</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="">T-Shirt</a></li>
-								<li><a href="">Mens</a></li>
-								<li><a href="">Womens</a></li>
-								<li><a href="">Gift Cards</a></li>
-								<li><a href="">Shoes</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>Policies</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="">Terms of Use</a></li>
-								<li><a href="">Privecy Policy</a></li>
-								<li><a href="">Refund Policy</a></li>
-								<li><a href="">Billing System</a></li>
-								<li><a href="">Ticket System</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>About Shopper</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="">Company Information</a></li>
-								<li><a href="">Careers</a></li>
-								<li><a href="">Store Location</a></li>
-								<li><a href="">Affillate Program</a></li>
-								<li><a href="">Copyright</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-3 col-sm-offset-1">
-						<div class="single-widget">
-							<h2>About Shopper</h2>
-							<form action="#" class="searchform">
-								<input type="text" placeholder="Your email address" />
-								<button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
-								<p>Get the most recent updates from <br />our site and be updated your self...</p>
-							</form>
-						</div>
-					</div>
-					
-				</div>
-			</div>
-		</div>
-		
-		<div class="footer-bottom">
-			<div class="container">
-				<div class="row">
-					<p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
-					<p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
-				</div>
-			</div>
-		</div>
-		
-	</footer>-->
 	
         <jsp:include page="footer.jsp" flush="false" />
 

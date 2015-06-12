@@ -58,16 +58,10 @@ public class CheckoutStep2 extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        String namaKurir = "PenToLine";
-        String jenisPaket = "Paket Kilat";
-        double biayaPaket = 5000.0;
+       String namaKurir = "PenToLine";
         
        HttpSession session = request.getSession(true);
        session.setAttribute("nama_kurir", namaKurir);
-       session.setAttribute("jenis_paket", jenisPaket);
-       session.setAttribute("biaya_paket", biayaPaket);
-       
-        System.out.println(namaKurir);
        
        request.getRequestDispatcher("checkout-2.jsp").forward(request, response);
         
@@ -84,7 +78,20 @@ public class CheckoutStep2 extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
+        String namaPaket = request.getParameter("paket");
+        String waktuPaket = request.getParameter("waktu");
+        if (namaPaket == null || waktuPaket == null){
+            request.setAttribute("error", "Anda belum memilih paket.");
+            request.getRequestDispatcher("checkout-2.jsp").forward(request, response);
+        }
+        else {
+            HttpSession session = request.getSession(true);
+            System.out.println(namaPaket);
+            session.setAttribute("nama_paket", namaPaket);
+            session.setAttribute("waktu_paket", waktuPaket);
+            response.sendRedirect("CheckoutStep3");
+        }
     }
 
     /**

@@ -6,6 +6,7 @@
 package model;
 
 import dao.BukuDAO;
+import java.io.IOException;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -115,7 +116,7 @@ public class BukuKeranjang implements Serializable {
         return true;
     }
     
-    public Buku getBuku(){
+    public Buku getBuku() throws IOException{
         BukuDAO dao = new BukuDAO();
         return dao.getBuku(""+ this.idBuku);
     }
@@ -124,5 +125,4 @@ public class BukuKeranjang implements Serializable {
     public String toString() {
         return "model.BukuKeranjang[ id=" + id + " ]";
     }
-    
 }

@@ -81,6 +81,7 @@ public class Register extends HttpServlet {
 //        processRequest(request, response);
         
         String nama = request.getParameter("nama");
+        String username = request.getParameter("username");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String phone = request.getParameter("phone");
@@ -93,6 +94,7 @@ public class Register extends HttpServlet {
         
         Akun acc = new Akun();
         acc.setNama(nama);
+        acc.setUsername(username);
         acc.setEmail(email);
         acc.setPassword(password);
         acc.setPhone(phone);

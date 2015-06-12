@@ -73,9 +73,11 @@ public class UserCheckout extends HttpServlet {
         Keranjang keranjangTmp = (Keranjang) request.getSession().getAttribute("currentSessionCart");
         String namaKurir = (String) request.getSession().getAttribute("nama_kurir");
         String jenisPaket = (String) request.getSession().getAttribute("jenis_paket");
+        String waktuPaket = (String) request.getSession().getAttribute("waktu_penerimaan");
         String namaBank = (String) request.getSession().getAttribute("nama_bank");
         double biayaPaketTotal = (double) request.getSession().getAttribute("biayapaket_total");
-        
+        double total = (double) request.getSession().getAttribute("total");
+        int beratPaket = (int) request.getSession().getAttribute("berat_paket");
         Calendar cal = Calendar.getInstance();
         java.util.Date date = cal.getTime();
       
@@ -90,8 +92,11 @@ public class UserCheckout extends HttpServlet {
         newCk.setIdAkun(temp.getId());
         newCk.setStatus(1);
         newCk.setBiayaPengiriman(biayaPaketTotal);
+        newCk.setBiayaItem(total);
         newCk.setNamaKurir(namaKurir);
+        newCk.setWaktuPenerimaan(waktuPaket);
         newCk.setJenisPaket(jenisPaket);
+        newCk.setBeratPaket(beratPaket);
         newCk.setTanggal(date);
         
         dao.add(newCk);
@@ -107,6 +112,7 @@ public class UserCheckout extends HttpServlet {
             daoBC.add(newBC);
             daoBK.delete("" + item.getId());
         }
+        
         
         
         request.getRequestDispatcher("success-checkout.jsp").forward(request, response);

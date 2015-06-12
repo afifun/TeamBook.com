@@ -8,6 +8,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.StringTokenizer;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -66,25 +67,41 @@ public class CheckoutStep4 extends HttpServlet {
         Akun temp = (Akun) request.getSession().getAttribute("currentSessionUser");
         Keranjang keranjangTmp = (Keranjang) request.getSession().getAttribute("currentSessionCart");
         String namaKurir = (String) request.getSession().getAttribute("nama_kurir");
-        String jenisPaket = (String) request.getSession().getAttribute("jenis_paket");
+        String jenisPaket = (String) request.getSession().getAttribute("nama_paket");
+        String waktuPaket = (String) request.getSession().getAttribute("waktu_paket");
         String namaBank = (String) request.getSession().getAttribute("nama_bank");
-        double biayaPaket = (double) request.getSession().getAttribute("biaya_paket");
         System.out.println(namaKurir);
         
         List<BukuKeranjang> bukuList = keranjangTmp.getItemsKeranjang();
         
         int kuantitasTotal = 0;
+        double beratTotal = 0;
         double hargaItemTotal = 0;
         
         for(BukuKeranjang item : bukuList){
             kuantitasTotal = kuantitasTotal + item.getKuantitas();
+            beratTotal = beratTotal + (int)(item.getBuku().getBerat() * item.getKuantitas());
             hargaItemTotal = (hargaItemTotal + item.getKuantitas() * item.getBuku().getHarga());
         }
         
+        int totalBerat = (int) Math.ceil(beratTotal/1000);
+        System.out.println(beratTotal/1000);
+        System.out.println(totalBerat);
+   
+        String result = kirimNotSaved(waktuPaket, "Paket buku " + temp.getNama(), jenisPaket, "http://teambook.cloudapp.net", temp.getAlamatShipping(), "Jalan Margonda", "Depok", temp.getKota(), "" + totalBerat,"Paket buku harus sampai pada  ", temp.getPhone(), "081233115617", temp.getNama(), "TeamBook", "teambook");
+        System.out.println(result);
+        String[] str = result.split("|");
+        System.out.println(str[1]);
+        StringTokenizer token = new StringTokenizer(result, "|");
+        double biayaPaket = Double.parseDouble(token.nextToken());
         HttpSession session = request.getSession(true);
-        session.setAttribute("biayapaket_total", biayaPaket*kuantitasTotal);
+        session.setAttribute("jenis_paket", jenisPaket);
+        session.setAttribute("waktu_penerimaan", waktuPaket);
+        session.setAttribute("biayapaket_total", biayaPaket);
+        session.setAttribute("berat_paket", totalBerat);
         session.setAttribute("harga_item_total", hargaItemTotal);
-        request.setAttribute("list", bukuList);
+        session.setAttribute("total", biayaPaket + hargaItemTotal);
+        session.setAttribute("list", bukuList);
         request.getRequestDispatcher("checkout-4.jsp").forward(request, response);
     }
 
@@ -100,6 +117,7 @@ public class CheckoutStep4 extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
+        
     }
 
     /**
@@ -111,5 +129,30 @@ public class CheckoutStep4 extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private static String kirimNotSaved(java.lang.String waktu, java.lang.String namaBarang, java.lang.String paket, java.lang.String link, java.lang.String alamattujuan, java.lang.String alamatasal, java.lang.String kotaasal, java.lang.String kotatujuan, java.lang.String berat, java.lang.String keterangan, java.lang.String teleponpenerima, java.lang.String teleponpengirim, java.lang.String namapenerima, java.lang.String namapengirim, java.lang.String username) {
+        service.PentolineService_Service service = new service.PentolineService_Service();
+        service.PentolineService port = service.getPentolineServicePort();
+        return port.kirimNotSaved(waktu, namaBarang, paket, link, alamattujuan, alamatasal, kotaasal, kotatujuan, berat, keterangan, teleponpenerima, teleponpengirim, namapenerima, namapengirim, username);
+    }
+
+    private static String hello(java.lang.String name) {
+        service.PentolineService_Service service = new service.PentolineService_Service();
+        service.PentolineService port = service.getPentolineServicePort();
+        return port.hello(name);
+    }
+
+    private static String kirim(java.lang.String waktu, java.lang.String namaBarang, java.lang.String paket, java.lang.String link, java.lang.String alamattujuan, java.lang.String alamatasal, java.lang.String kotaasal, java.lang.String kotatujuan, java.lang.String berat, java.lang.String keterangan, java.lang.String teleponpenerima, java.lang.String teleponpengirim, java.lang.String namapenerima, java.lang.String namapengirim, java.lang.String username) {
+        service.PentolineService_Service service = new service.PentolineService_Service();
+        service.PentolineService port = service.getPentolineServicePort();
+        return port.kirim(waktu, namaBarang, paket, link, alamattujuan, alamatasal, kotaasal, kotatujuan, berat, keterangan, teleponpenerima, teleponpengirim, namapenerima, namapengirim, username);
+    }
+
+    private static String cekStatus(java.lang.String id) {
+        service.PentolineService_Service service = new service.PentolineService_Service();
+        service.PentolineService port = service.getPentolineServicePort();
+        return port.cekStatus(id);
+    }
+
 
 }

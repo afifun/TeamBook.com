@@ -69,12 +69,14 @@ public class Index extends HttpServlet {
 //        processRequest(request, response);
         
         BukuDAO dao = new BukuDAO();
-        List<Buku> list = dao.getListBuku();
+        
+        List<Buku> listBk = dao.getListBuku(0, 3);
+        if(listBk != null){
+            request.setAttribute("listBuku", listBk);
+        }
         request.setAttribute("buku", true);
-        request.setAttribute("listBuku", list);
         request.getRequestDispatcher("index.jsp").forward(request,
                 response);
-        
     
     }
 

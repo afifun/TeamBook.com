@@ -141,15 +141,13 @@ public class AddBook extends HttpServlet {
         
         if(dao.add(bk,filecontent)){
             request.setAttribute("buku", true);
-            request.setAttribute("notifikasi", "Sukses! Buku berhasil ditambahkan");
+            request.setAttribute("notifikasi1", "Sukses! Buku berhasil ditambahkan");
         }
         else {
             request.setAttribute("buku", true);
-            request.setAttribute("notifikasi", "Gagal! Buku gagal ditambahkan");
+            request.setAttribute("notifikasi2", "Gagal! Buku gagal ditambahkan");
         }
         request.getRequestDispatcher("addBook.jsp").forward(request, response);
-        
-        
         
     }
 

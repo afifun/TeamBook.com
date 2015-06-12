@@ -68,11 +68,12 @@ public class ListBook extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
         Akun temp = (Akun) request.getSession().getAttribute("currentSessionUser");
-		if(temp == null || !temp.getIsAdmin()){
+		if(!temp.getIsAdmin()){
 			String site = "Login" ;
 			response.setStatus(response.SC_MOVED_TEMPORARILY);
 			response.setHeader("Location", site);
 		}
+                
         BukuDAO dao = new BukuDAO();
         
         List<Buku> list = dao.getListBuku();

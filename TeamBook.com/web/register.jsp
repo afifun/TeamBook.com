@@ -40,16 +40,30 @@
 						<h2>Register</h2>  
                                                 <p style="color: red">${notifikasi}</p>
 						<form action="Register" method="post">
-                                                    <input type="text" name="nama" placeholder="Nama" required/>
+                                                        <input type="text" name="nama" placeholder="Nama" required/>
+                                                        <input type="text" name="username" placeholder="Username" required/>
 							<input type="email" name="email" placeholder="Email" required/>
 							<input type="password" name="password" placeholder="Password" required/>
-                                                        
                                                         <input type="text" name="phone" placeholder="No.Telepon" required/>
-							<input type="text" name="provinsi" placeholder="Provinsi" required/>
-							<input type="text" name="kota" placeholder="Kota" required/>
-                                                        
+							<select class="form-control" id="sel2" name="provinsi">
+                                                            <option value="">-- Provinsi --</option>
+                                                            <option value="Jakarta">Jakarta</option>
+                                                            <option value="Banten">Banten</option>
+                                                            <option value="Jawa Barat">Jawa Barat</option>
+                                                            
+                                                        </select>
+                                                        <br>
+							<select class="form-control" id="sel2" name="kota">
+                                                            <option value="">-- Kota --</option>
+                                                            <option value="Jakarta">Jakarta</option>
+                                                            <option value="Depok">Depok</option>
+                                                            <option value="Bogor">Bogor</option>
+                                                            <option value="Tangerang">Tangerang</option>
+                                                            <option value="Bekasi">Bekasi</option>
+                                                        </select>
+                                                        <br>
 							<input type="text" name="kode_pos" placeholder="Kode Pos" required/>
-                                                        <textarea rows="5" name="alamat_default" placeholder="Alamat Default" required></textarea>
+                                                        <textarea rows="5" name="alamat_default" placeholder="Alamat Tetap" required></textarea>
                                                         <p></p>
                                                         <textarea rows="5" name="alamat_shipping" placeholder="Alamat Shipping" required></textarea>
                                                         <p></p>

@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -29,12 +28,15 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Akun.findAll", query = "SELECT a FROM Akun a"),
     @NamedQuery(name = "Akun.findById", query = "SELECT a FROM Akun a WHERE a.id = :id"),
     @NamedQuery(name = "Akun.findByNama", query = "SELECT a FROM Akun a WHERE a.nama = :nama"),
+    @NamedQuery(name = "Akun.findByUsername", query = "SELECT a FROM Akun a WHERE a.username = :username"),
     @NamedQuery(name = "Akun.findByPassword", query = "SELECT a FROM Akun a WHERE a.password = :password"),
     @NamedQuery(name = "Akun.findByEmail", query = "SELECT a FROM Akun a WHERE a.email = :email"),
     @NamedQuery(name = "Akun.findByPhone", query = "SELECT a FROM Akun a WHERE a.phone = :phone"),
     @NamedQuery(name = "Akun.findByProvinsi", query = "SELECT a FROM Akun a WHERE a.provinsi = :provinsi"),
     @NamedQuery(name = "Akun.findByKota", query = "SELECT a FROM Akun a WHERE a.kota = :kota"),
     @NamedQuery(name = "Akun.findByKodePos", query = "SELECT a FROM Akun a WHERE a.kodePos = :kodePos"),
+    @NamedQuery(name = "Akun.findByAlamatShipping", query = "SELECT a FROM Akun a WHERE a.alamatShipping = :alamatShipping"),
+    @NamedQuery(name = "Akun.findByAlamatDefault", query = "SELECT a FROM Akun a WHERE a.alamatDefault = :alamatDefault"),
     @NamedQuery(name = "Akun.findByIsAdmin", query = "SELECT a FROM Akun a WHERE a.isAdmin = :isAdmin")})
 public class Akun implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -46,6 +48,9 @@ public class Akun implements Serializable {
     @Basic(optional = false)
     @Column(name = "nama")
     private String nama;
+    @Basic(optional = false)
+    @Column(name = "username")
+    private String username;
     @Basic(optional = false)
     @Column(name = "password")
     private String password;
@@ -65,11 +70,9 @@ public class Akun implements Serializable {
     @Column(name = "kode_pos")
     private String kodePos;
     @Basic(optional = false)
-    @Lob
     @Column(name = "alamat_shipping")
     private String alamatShipping;
     @Basic(optional = false)
-    @Lob
     @Column(name = "alamat_default")
     private String alamatDefault;
     @Basic(optional = false)
@@ -83,9 +86,10 @@ public class Akun implements Serializable {
         this.id = id;
     }
 
-    public Akun(Integer id, String nama, String password, String email, String phone, String provinsi, String kota, String kodePos, String alamatShipping, String alamatDefault, boolean isAdmin) {
+    public Akun(Integer id, String nama, String username, String password, String email, String phone, String provinsi, String kota, String kodePos, String alamatShipping, String alamatDefault, boolean isAdmin) {
         this.id = id;
         this.nama = nama;
+        this.username = username;
         this.password = password;
         this.email = email;
         this.phone = phone;
@@ -111,6 +115,14 @@ public class Akun implements Serializable {
 
     public void setNama(String nama) {
         this.nama = nama;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

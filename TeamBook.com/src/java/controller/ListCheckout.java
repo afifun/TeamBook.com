@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Akun;
 import model.Checkout;
 
 /**
@@ -60,13 +61,22 @@ public class ListCheckout extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
+        Akun temp = (Akun) request.getSession().getAttribute("currentSessionUser");
+        System.out.println(temp);
+        if(temp == null){
+            String site = "Login" ;
+            response.setStatus(response.SC_MOVED_TEMPORARILY);
+            response.setHeader("Location", site);
+        }
+        else {
+            String id = request.getParameter("id");
+            CheckoutDAO dao = new CheckoutDAO();
+            List<Checkout> list = dao.getCheckoutByAkun(id);
+
+            request.setAttribute("list", list);
+            request.getRequestDispatcher("list-checkout.jsp").forward(request, response);
+        }
         
-        String id = request.getParameter("id");
-        CheckoutDAO dao = new CheckoutDAO();
-        List<Checkout> list = dao.getCheckoutByAkun(id);
-        
-        request.setAttribute("list", list);
-        request.getRequestDispatcher("list-checkout.jsp").forward(request, response);
     }
 
     /**

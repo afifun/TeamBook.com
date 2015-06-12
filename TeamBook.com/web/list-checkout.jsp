@@ -3,6 +3,7 @@
     Created on : Mar 11, 2015, 5:08:53 PM
     Author     : moh.afifun
 --%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -68,8 +69,8 @@
                                     <tr>
                                         <th>No. Pesanan</th>
                                         <th>Tanggal Pemesanan</th>
+                                        <th>Total Pembayaran</th>
                                         <th>Status</th>
-                                        <th></th>
                                     </tr>
                                 </thead>
 
@@ -78,25 +79,23 @@
                                         <tr>
                                             <td>${item.getId()}</td>
                                             <td>${item.getTanggal()}</td>
+                                            <td style="alignment-adjust: middle"><fmt:setLocale value="id_ID"/>
+                                                                                        <fmt:formatNumber value="${item.getBiayaPengiriman() + item.getBiayaItem()}" type="currency"/>
+                                               </td>
                                             <td>
                                                 <c:choose>
                                                     <c:when test="${item.getStatus() == 1}">
-                                                        Belum Dibayar
+                                                        Belum Dibayar &nbsp;  <a href="Konfirmasi?IDOrder=${item.getId()}">[Konfirmasi]</a>
                                                     </c:when>
                                                     <c:when test="${item.getStatus() == 2}">
-                                                        Telah Dibayar
+                                                        Menunggu konfirmasi dari TeamBook. 
                                                     </c:when>
+                                                        <c:when test="${item.getStatus() == 3}">
+                                                        Pesanan telah dikonfirmasi dan akan segera dikirim oleh partner kurir kami. 
+                                                        <br>Silakan track status pesanan anda melalui <a href="http://pentoline.cloudapp.net/PenToLineClient/statuspengiriman.jsp">link</a> ini dengan ID <strong>${item.getIdOrderKurir()}</strong>
+                                                          </c:when>
                                                     <c:otherwise>
                                                         Di Tolak
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </td>
-                                            <td>
-                                                <c:choose>
-                                                    <c:when test="${item.getStatus() == 1}">
-                                                        <a href="Konfirmasi?IDOrder=${item.getId()}"><button class="btn btn-primary">Konfirmasi</button></a>
-                                                    </c:when>
-                                                    <c:otherwise>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </td>

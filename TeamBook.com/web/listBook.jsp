@@ -51,12 +51,6 @@
         <jsp:include page="header.jsp" flush="false" />
         <section id="cart_items">
             <div class="container">
-                <!--			<div class="breadcrumbs">
-                                                <ol class="breadcrumb">
-                                                  <li><a href="#">Home</a></li>
-                                                  <li class="active">Tambah Buku</li>
-                                                </ol>
-                                        </div>/breadcrums-->
 
                 <div class="row">  	
                     <div class="col-md-12">
@@ -79,18 +73,6 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-
-                                <tfoot>
-                                    <tr>
-                                        <th>ISBN</th>
-                                        <th>Judul</th>
-                                        <th>Kategori</th>
-                                        <th>Deskripsi</th>
-                                        <th>Harga</th>
-                                        <th>Gambar</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </tfoot>
 
                                 <tbody>
                                     <c:forEach var="item" items="${listBuku}">

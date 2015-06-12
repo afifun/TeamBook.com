@@ -18,13 +18,20 @@ import model.BukuCheckout;
  * @author moh.afifun
  */
 public class BukuCheckoutDAO {
-    
 
     private EntityManager manager;
 
     public BukuCheckoutDAO() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("TeamBook.comPU");
         this.manager = emf.createEntityManager();
+    }
+    
+    public BukuCheckout getBukuCheckoutByIdCheckout(String id) {
+        BukuCheckout co = (BukuCheckout) manager.createNamedQuery("BukuCheckout.findByIdCheckout").setParameter("idCheckout", Integer.parseInt(id)).getSingleResult();
+        if (co == null) {
+            throw new EntityNotFoundException("Tidak dapat menemukan BukuCheckout dengan id " + id);
+        }
+        return co;
     }
 
     public BukuCheckout getBukuCheckout(String id) {

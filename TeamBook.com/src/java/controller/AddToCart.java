@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Akun;
 import model.BukuKeranjang;
 import model.Keranjang;
 
@@ -67,22 +68,38 @@ public class AddToCart extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
         
-        String idB = request.getParameter("id");
-        BukuKeranjangDAO dao = new BukuKeranjangDAO();
-        Keranjang keranjangTmp = (Keranjang) request.getSession().getAttribute("currentSessionCart");
-        
-        BukuKeranjang item = new BukuKeranjang();
-        item.setIdBuku(Integer.parseInt(idB));
-        item.setIdKeranjang(keranjangTmp.getIdKeranjang());
-        
-        if (dao.add(item)){
-            List<BukuKeranjang> list = keranjangTmp.getItemsKeranjang();
-            HttpSession session = request.getSession(true);
-            session.setAttribute("item_sum", "(" + list.size() + ")");
-            String site = "Index";
+        Akun temp = (Akun) request.getSession().getAttribute("currentSessionUser");
+        System.out.println(temp);
+        if(temp == null){
+            String site = "Login" ;
             response.setStatus(response.SC_MOVED_TEMPORARILY);
             response.setHeader("Location", site);
         }
+        else{
+            String idB = request.getParameter("id");
+            BukuKeranjangDAO dao = new BukuKeranjangDAO();
+            Keranjang keranjangTmp = (Keranjang) request.getSession().getAttribute("currentSessionCart");
+
+            BukuKeranjang item = new BukuKeranjang();
+            item.setIdBuku(Integer.parseInt(idB));
+            item.setIdKeranjang(keranjangTmp.getIdKeranjang());
+        
+            if (dao.add(item)){
+                List<BukuKeranjang> list = keranjangTmp.getItemsKeranjang();
+                int total = 0;
+                for (BukuKeranjang list1 : list) {
+                    total = total + list1.getKuantitas();
+                }
+                
+                HttpSession session = request.getSession(true);
+                session.setAttribute("item_sum", "(" + total + ")");
+                String site = "Index";
+                response.setStatus(response.SC_MOVED_TEMPORARILY);
+                response.setHeader("Location", site);
+            }
+        }
+        
+        
         
     }
 

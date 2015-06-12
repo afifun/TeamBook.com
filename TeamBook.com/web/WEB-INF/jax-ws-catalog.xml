@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://pentoline.cloudapp.net/PenToLineClient/PentolineService?wsdl" uri="wsdl/pentoline.cloudapp.net/PenToLineClient/PentolineService.wsdl"/>
+    <system systemId="http://pentoline.cloudapp.net:80/PenToLineClient/PentolineService?xsd=1" uri="wsdl/pentoline.cloudapp.net_80/PenToLineClient/PentolineService.xsd_1.xsd"/>
+</catalog>

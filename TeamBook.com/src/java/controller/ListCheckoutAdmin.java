@@ -67,13 +67,16 @@ public class ListCheckoutAdmin extends HttpServlet {
 			response.setStatus(response.SC_MOVED_TEMPORARILY);
 			response.setHeader("Location", site);
 		}
-        CheckoutDAO dao = new CheckoutDAO();
+                else{
+                    CheckoutDAO dao = new CheckoutDAO();
         
-        List<Checkout> list = dao.getListCheckout();
-        request.setAttribute("checkout", true);
-        request.setAttribute("listCheckout", list);
-        request.getRequestDispatcher("list-checkout-admin.jsp").forward(request,
+                    List<Checkout> list = dao.getListCheckout();
+                    request.setAttribute("checkout", true);
+                    request.setAttribute("listCheckout", list);
+                    request.getRequestDispatcher("list-checkout-admin.jsp").forward(request,
 						response);
+                }
+        
     }
 
     /**

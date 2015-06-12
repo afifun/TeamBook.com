@@ -74,11 +74,18 @@ public class CheckoutStep3 extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
         
-        String namaBank = request.getParameter("bank");
         HttpSession session = request.getSession(true);
-        System.out.println(namaBank);
-        session.setAttribute("nama_bank", namaBank);
-        response.sendRedirect("CheckoutStep4");
+        String namaBank = request.getParameter("bank");
+        if (namaBank == null){
+            request.setAttribute("error", "Anda belum memilih bank.");
+            request.getRequestDispatcher("checkout-3.jsp").forward(request, response);
+        }
+        else {
+            System.out.println(namaBank);
+            session.setAttribute("nama_bank", namaBank);
+            response.sendRedirect("CheckoutStep4");
+        }
+        
     }
 
     /**

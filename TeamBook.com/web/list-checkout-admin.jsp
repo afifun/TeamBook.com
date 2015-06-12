@@ -3,6 +3,7 @@
     Created on : Mar 11, 2015, 5:08:53 PM
     Author     : moh.afifun
 --%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -51,13 +52,6 @@
         <jsp:include page="header.jsp" flush="false" />
         <section id="cart_items">
             <div class="container">
-                <!--			<div class="breadcrumbs">
-                                                <ol class="breadcrumb">
-                                                  <li><a href="#">Home</a></li>
-                                                  <li class="active">Tambah Buku</li>
-                                                </ol>
-                                        </div>/breadcrums-->
-
                 <div class="row">  	
                     <div class="col-md-12">
                         <div class="contact-form">
@@ -72,23 +66,12 @@
                                         <th>Kurir</th>
                                         <th>Jenis Paket</th>
                                         <th>Biaya Pengiriman</th>
+                                        <th>Biaya Buku</th>
                                         <th>Bank</th>
                                         <th>Status</th>
+                                        <th>Edit</th>
                                     </tr>
                                 </thead>
-
-                                <tfoot>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Tanggal</th>
-                                        <th>ID Akun</th>
-                                        <th>Kurir</th>
-                                        <th>Jenis Paket</th>
-                                        <th>Biaya Pengiriman</th>
-                                        <th>Bank</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </tfoot>
 
                                 <tbody>
                                     <c:forEach var="item" items="${listCheckout}">
@@ -98,18 +81,36 @@
                                             <td>${item.getIdAkun()}</td>
                                             <td>${item.getNamaKurir()}</td>
                                             <td>${item.getJenisPaket()}</td>
-                                            <td>${item.getBiayaPengiriman()}</td>
+                                            <td><fmt:setLocale value="id_ID"/>
+                                                                                        <fmt:formatNumber value="${item.getBiayaPengiriman()}" type="currency"/>
+                                                </td>
+                                            <td>
+                                                <fmt:setLocale value="id_ID"/>
+                                                                                        <fmt:formatNumber value="${item.getBiayaItem()}" type="currency"/>
+                                                </td>
                                             <td>${item.getBank()}</td>
                                             <td>
                                                 <c:choose>
                                                     <c:when test="${item.getStatus() == 1}">
                                                         Belum Dibayar
                                                     </c:when>
+                                                    <c:when test="${item.getStatus() == 2}">
+                                                        Telah Dibayar oleh Pelanggan
+                                                    </c:when>
+                                                    <c:when test="${item.getStatus() == 3}">
+                                                        Pembayaran telah dikonfirmasi oleh Admin
+                                                    </c:when>
                                                     <c:otherwise>
-                                                        Di Tolak
+                                                        Ditolak
                                                     </c:otherwise>
                                                 </c:choose>
                                             </td>
+                                            <td>
+                                                   <c:if test="${item.getStatus() != 1}">
+                                                       <a href="
+                                                   EditCheckout?id=${item.getId()}"><button class="btn btn-primary"><span class="glyphicon-pencil"></span> Edit</button></a>
+                                                   </c:if>
+                                                   </td>
                                         </tr>   
                                     </c:forEach>
                                     
@@ -119,7 +120,6 @@
                         </div>
                     </div>
                     <div class="col-sm-4">
-
                     </div>    			
                 </div>
             </div>

@@ -5,19 +5,24 @@
  */
 package controller;
 
+import dao.AkunDAO;
 import dao.BuktiTransferDAO;
+import dao.BukuCheckoutDAO;
 import dao.CheckoutDAO;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.StringTokenizer;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import model.Akun;
 import model.BuktiTransfer;
+import model.BukuCheckout;
 import model.Checkout;
 
 /**
@@ -67,7 +72,13 @@ public class Konfirmasi extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        
+        Akun temp = (Akun) request.getSession().getAttribute("currentSessionUser");
+        System.out.println(temp);
+        if(temp == null){
+            String site = "Login" ;
+            response.setStatus(response.SC_MOVED_TEMPORARILY);
+            response.setHeader("Location", site);
+        }
         String IDOrder = request.getParameter("IDOrder");
         request.setAttribute("IDOrder", IDOrder);
         request.getRequestDispatcher("konfirmasi.jsp").forward(request, response);
@@ -85,13 +96,22 @@ public class Konfirmasi extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        String IDOrder = request.getParameter("id_order");
+        Akun tempe = (Akun) request.getSession().getAttribute("currentSessionUser");
+        if(tempe == null){
+            String site = "Login" ;
+            response.setStatus(response.SC_MOVED_TEMPORARILY);
+            response.setHeader("Location", site);
+        }
+        else {
+            String IDOrder = request.getParameter("id_order");
         BuktiTransfer bt = new BuktiTransfer();
         bt.setIdCheckout(Long.parseLong(IDOrder));
         bt.setGambarPath("images/bukti_transfer/" + IDOrder + ".jpg");
         
         BuktiTransferDAO dao = new BuktiTransferDAO();
         CheckoutDAO daoC = new CheckoutDAO();
+        AkunDAO daoAkun = new AkunDAO();
+        BukuCheckoutDAO daoBC = new BukuCheckoutDAO();
         
         
         InputStream filecontent = null;
@@ -105,10 +125,13 @@ public class Konfirmasi extends HttpServlet {
         
         if(dao.add(bt, filecontent)){
             Checkout co = daoC.getCheckout(IDOrder);
+            Akun temp = daoAkun.getAkun("" + co.getIdAkun());
             co.setStatus(2);
             daoC.update(co);
-            response.sendRedirect("Konfirmasi");
+            response.sendRedirect("ListCheckout?id="+temp.getId());
         }
+        }
+        
     }
 
     /**
@@ -120,5 +143,13 @@ public class Konfirmasi extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private static String kirim(java.lang.String waktu, java.lang.String namaBarang, java.lang.String paket, java.lang.String link, java.lang.String alamattujuan, java.lang.String alamatasal, java.lang.String kotaasal, java.lang.String kotatujuan, java.lang.String berat, java.lang.String keterangan, java.lang.String teleponpenerima, java.lang.String teleponpengirim, java.lang.String namapenerima, java.lang.String namapengirim, java.lang.String username) {
+        service.PentolineService_Service service = new service.PentolineService_Service();
+        service.PentolineService port = service.getPentolineServicePort();
+        return port.kirim(waktu, namaBarang, paket, link, alamattujuan, alamatasal, kotaasal, kotatujuan, berat, keterangan, teleponpenerima, teleponpengirim, namapenerima, namapengirim, username);
+    }
+    
+    
 
 }

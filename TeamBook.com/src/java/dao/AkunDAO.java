@@ -9,24 +9,17 @@ package dao;
  *
  * @author moh.afifun
  */
-import connection.ConnectionManager;
+
 import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
+import java.util.Objects;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
 import model.Akun;
-import model.Akun;
-import model.Keranjang;
 
 public class AkunDAO {
 
@@ -87,14 +80,20 @@ public class AkunDAO {
         
     }
 
-    public boolean update(Akun newCo) {
-        try {
+    public boolean update(Akun newCo) throws IOException, SQLException {
+        if(emailIsNotExist2(newCo)){
+            try{
             manager.getTransaction().begin();
             manager.merge(newCo);
             manager.getTransaction().commit();
 
             return true;
         } catch (Exception e) {
+            return false;
+        }
+        }
+        else{
+            System.out.println("emailnya sudah digunakan");
             return false;
         }
     }
@@ -113,8 +112,15 @@ public class AkunDAO {
         }
     }
 
-    public Akun login(String email, String password) throws Exception {
-        List list = manager.createNamedQuery("Akun.findByEmail").setParameter("email", email).getResultList();
+    public Akun login(String str, String password) throws Exception {
+       List list = null;
+       if(str.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")){
+           list = manager.createNamedQuery("Akun.findByEmail").setParameter("email", str).getResultList();
+       }
+       else {
+           list = manager.createNamedQuery("Akun.findByUsername").setParameter("username", str).getResultList();
+       }
+       
         
        if(list == null || list.size() == 0){
             return null;
@@ -130,7 +136,17 @@ public class AkunDAO {
            }
        }
     }
-
+    
+    public boolean emailIsNotExist2(Akun acc) throws IOException, SQLException {
+        List akun = manager.createNamedQuery("Akun.findByEmail").setParameter("email", acc.getEmail()).getResultList();
+        Akun akunobj = (Akun) akun.get(0);
+        
+        if (akun == null){
+            return true;
+        }
+        else return Objects.equals(akunobj.getId(), acc.getId());
+    }
+    
     public boolean emailIsNotExist(String email) throws IOException, SQLException {
         List akun = manager.createNamedQuery("Akun.findByEmail").setParameter("email", email).getResultList();
         return akun != null;

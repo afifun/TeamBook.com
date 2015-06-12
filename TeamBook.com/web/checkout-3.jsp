@@ -52,9 +52,10 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="shopper-info">
-                                                    
-                                                    <label><input disabled type="checkbox" checked> Transfer Bank</label>
+                                                    <p style="font-size: 13px; color: red">${error}</p>
+                                                    <label><input disabled type="checkbox" checked> Transfer Bank*</label>
                                                     <p>Pilih Bank :</p>
+                                                    
                                                     <form action="CheckoutStep3" method="POST">
                                                             <label><input name="bank" type="radio" value="BNI"> BNI</label><br>
                                                             <label><input name="bank" type="radio" value="Mandiri"> Mandiri</label><br>
@@ -65,6 +66,8 @@
                                                             <input class="btn btn-primary" type="submit" value="Continue >>">
                                                     </div>
                                                             </form>
+                                                    <p style="font-size: 12px"><i><b>*)</b> Metode pembayaran yanag tersedia hanya transfer bank.</i></p>
+                                                 
 						</div>
 					</div>				
 				</div>

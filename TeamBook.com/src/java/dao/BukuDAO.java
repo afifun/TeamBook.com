@@ -15,6 +15,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,10 +36,15 @@ public class BukuDAO {
     
 
     private EntityManager manager;
+    String propertiesFileName = "config.properties";
+    Properties properti = null;
 
-    public BukuDAO() {
+    public BukuDAO() throws IOException {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("TeamBook.comPU");
         this.manager = emf.createEntityManager();
+        this.properti = new Properties();
+	URL url = getClass().getResource(propertiesFileName);
+	properti.load(url.openStream());
     }
 
     public Buku getBuku(String id) {
@@ -58,6 +64,24 @@ public class BukuDAO {
         }
         return co_list;
     }
+    
+    public List<Buku> getListBuku(int indexMulai, int indexAkhir) {
+        List<Buku> co_list = new ArrayList();
+        List result_list = manager.createNamedQuery("Buku.findAll").getResultList();
+        
+        if(indexMulai > result_list.size()){
+            return null;
+        }
+        
+        if ((indexAkhir) > result_list.size()){
+            indexAkhir = result_list.size();
+        }
+        
+        for (int i = indexMulai; i < indexAkhir; i++) {
+            co_list.add((Buku) result_list.get(i));
+        }
+        return co_list;
+    }
 
     public boolean add(Buku newCo, InputStream filecontent) {
         try {
@@ -65,7 +89,7 @@ public class BukuDAO {
             manager.persist(newCo);
             manager.getTransaction().commit();
 
-            OutputStream outputStream = new FileOutputStream(new File("C:/Users/moh.afifun/Documents/GitHub/TeamBook.com/TeamBook.com/web/images/buku/" + newCo.getIsbn() + ".jpg"));
+            OutputStream outputStream = new FileOutputStream(new File(properti.getProperty("imgdir") + "/buku/" + newCo.getIsbn() + ".jpg"));
 
             int read = 0;
             byte[] bytes = new byte[2048];
@@ -101,7 +125,7 @@ public class BukuDAO {
             
             if (filecontent != null) {
             
-            File f = new File("C:/Users/moh.afifun/Documents/GitHub/TeamBook.com/TeamBook.com/web/images/buku/" + newCo.getIsbn()+ ".jpg");
+            File f = new File(properti.getProperty("imgdir") + "/buku/" + newCo.getIsbn()+ ".jpg");
 
             Boolean flag = false;
             
@@ -109,7 +133,7 @@ public class BukuDAO {
                 flag = f.delete();
             }
                         
-            OutputStream outputStream = new FileOutputStream(new File("C:/Users/moh.afifun/Documents/GitHub/TeamBook.com/TeamBook.com/web/images/buku/" + newCo.getIsbn()+ ".jpg"));
+            OutputStream outputStream = new FileOutputStream(new File(properti.getProperty("imgdir") + "/buku/" + newCo.getIsbn()+ ".jpg"));
 
             int read = 0;
             byte[] bytes = new byte[2048];

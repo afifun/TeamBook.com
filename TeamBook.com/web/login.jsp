@@ -41,7 +41,7 @@
 						<h2>Login</h2>
                                                 <p style="color: red">${respon}</p>
                                                 <form action="Login" method="post">
-							<input type="email" name="email" placeholder="Email" />
+							<input type="text" name="email" placeholder="Username/Email" />
                                                         
 							<input type="password" name="password" placeholder="Password"/>
 <!--							<span>

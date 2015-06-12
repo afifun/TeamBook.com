@@ -4,6 +4,7 @@
     Author     : moh.afifun
 --%>
 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -67,17 +68,21 @@
 								<p>${item.getBuku().getId()}</p>
 							</td>
 							<td class="cart_price">
-								<p>${item.getBuku().getHarga()}</p>
+								<p><fmt:setLocale value="id_ID"/>
+                                                                    <fmt:formatNumber value="${item.getBuku().getHarga()}" type="currency" />
+                                                                </p>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="${item.getKuantitas()}" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
+									<input class="cart_quantity_input" type="text" name="quantity" value="${item.getKuantitas()}" autocomplete="off" size="2" readonly>
+									
 								</div>
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price">${item.getKuantitas()*item.getBuku().getHarga()}</p>
+								<p class="cart_total_price">
+                                                                    <fmt:setLocale value="id_ID"/>
+                                                                    <fmt:formatNumber value="${item.getKuantitas()*item.getBuku().getHarga()}" type="currency" />
+                                                               </p>
 							</td>
 							<td class="cart_delete">
                                                             <a href="DeleteItemCart?id=${item.getId()}" class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>

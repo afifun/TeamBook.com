@@ -10,12 +10,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
+import javax.tools.FileObject;
 import model.BuktiTransfer;
 
 /**
@@ -24,10 +27,15 @@ import model.BuktiTransfer;
  */
 public class BuktiTransferDAO {
     private EntityManager manager;
-
-    public BuktiTransferDAO() {
+    String propertiesFileName = "config.properties";
+    Properties properti = null;
+    
+    public BuktiTransferDAO() throws IOException {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("TeamBook.comPU");
         this.manager = emf.createEntityManager();
+        this.properti = new Properties();
+	URL url = getClass().getResource(propertiesFileName);
+	properti.load(url.openStream());
     }
 
     public BuktiTransfer getBuktiTransfer(String id) {
@@ -38,13 +46,15 @@ public class BuktiTransferDAO {
         return co;
     }
     
-    public List<BuktiTransfer> getBuktiTransferByCheckout(String id) {
-        List<BuktiTransfer> co_list = new ArrayList();
-        List result_list = manager.createNamedQuery("BuktiTransfer.findByIdCheckout").setParameter("idCheckout", Integer.parseInt(id)).getResultList();
-        for (Object item : result_list) {
-            co_list.add((BuktiTransfer) item);
+    public BuktiTransfer getBuktiTransferByCheckout(String id) {
+        List result_list = manager.createNamedQuery("BuktiTransfer.findByIdCheckout").setParameter("idCheckout", Long.parseLong(id)).getResultList();
+        if(result_list != null){
+            return (BuktiTransfer)result_list.get(0);
         }
-        return co_list;
+        else {
+            return null;
+        }
+    
     }
 
     public List<BuktiTransfer> getListBuktiTransfer() {
@@ -62,7 +72,7 @@ public class BuktiTransferDAO {
             manager.getTransaction().begin();
             manager.persist(newCo);
             manager.getTransaction().commit();
-           OutputStream outputStream = new FileOutputStream(new File("C:/Users/moh.afifun/Documents/GitHub/TeamBook.com/TeamBook.com/web/images/bukti_transfer/" + newCo.getIdCheckout() + ".jpg"));
+            OutputStream outputStream = new FileOutputStream(new File(properti.getProperty("imgdir") + "/bukti_transfer/" + newCo.getIdCheckout() + ".jpg"));
 
             int read = 0;
             byte[] bytes = new byte[2048];
